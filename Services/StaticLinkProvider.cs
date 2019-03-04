@@ -39,7 +39,7 @@ public class StaticLinkProvider : ILinkProvider
     public string GetLink()
     {
         var idx = rnd.Next(OrderedLinks.Count);
-        return links[idx].Uri;
+        return OrderedLinks[idx].Uri;
     }
 
     private static List<Link> GenerateWeightedLinks()
