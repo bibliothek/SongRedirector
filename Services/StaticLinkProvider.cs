@@ -21,7 +21,17 @@ public class StaticLinkProvider : ILinkProvider
         new Link("Whisky in the Jar", "https://www.youtube.com/watch?v=wsrvmNtWU4E", 10),
         new Link("Mama Lauda", "https://www.youtube.com/watch?v=vloUhu7QxmU", 10),
         new Link("Castle on the hill", "https://www.youtube.com/watch?v=Ytb7J0ciBcE", 10),
-        new Link("Shake it off", "https://www.youtube.com/watch?v=8XFBUM8dMqw", 10)
+        new Link("Shake it off", "https://www.youtube.com/watch?v=8XFBUM8dMqw", 10),
+        new Link("Best song in the world","https://www.youtube.com/watch?v=_lK4cX5xGiQ",10),
+        new Link("Killing in the name of","https://www.youtube.com/watch?v=B5NoXaSajq0",10),
+        new Link("Rockstar","https://www.youtube.com/watch?v=DmeUuoxyt_E",10),
+        new Link("Grilfirend","https://www.youtube.com/watch?v=Bg59q4puhmg",10),
+        new Link("4 chord song","https://youtu.be/5pidokakU4I?t=58",10),
+        new Link("Whats my age again","https://www.youtube.com/watch?v=JZioV5d3osg",10),
+        new Link("Green Day Holiday","https://www.youtube.com/watch?v=A1OqtIqzScI",10),
+        new Link("Ollas Leiwand","https://www.youtube.com/watch?v=hRilPLU-9-0&list=OLAK5uy_mR4JTyNcvSBqxf8TiGAbofn97bJjfZx4M&index=14",10),
+        new Link("Wanabe","https://www.youtube.com/results?search_query=spice+girls+wannabe+lyrics",10)
+
     };
 
     private static List<Link> OrderedLinks { get; } = GenerateWeightedLinks();
