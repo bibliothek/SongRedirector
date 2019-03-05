@@ -30,8 +30,8 @@ public class StaticLinkProvider : ILinkProvider
         new Link("Whats my age again","https://www.youtube.com/watch?v=JZioV5d3osg",10),
         new Link("Green Day Holiday","https://www.youtube.com/watch?v=A1OqtIqzScI",10),
         new Link("Ollas Leiwand","https://www.youtube.com/watch?v=hRilPLU-9-0&list=OLAK5uy_mR4JTyNcvSBqxf8TiGAbofn97bJjfZx4M&index=14",10),
-        new Link("Wanabe","https://www.youtube.com/results?search_query=spice+girls+wannabe+lyrics",10)
-
+        new Link("Wanabe","https://www.youtube.com/watch?v=gJLIiF15wjQ",10),
+        new Link("Clap clap", "https://www.youtube.com/watch?v=NsWj6_AaNNE", 4)
     };
 
     private static List<Link> OrderedLinks { get; } = GenerateWeightedLinks();
