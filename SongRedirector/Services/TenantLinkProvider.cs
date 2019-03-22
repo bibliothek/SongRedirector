@@ -5,7 +5,7 @@ namespace SongRedirector.Services
     public class TenantLinkProvider : ITenantLinkProvider
     {
 
-        private Dictionary<string, ILinkProvider> tenanteProviders = new Dictionary<string, ILinkProvider>();
+        private Dictionary<string, ILinkProvider> tenantProviders = new Dictionary<string, ILinkProvider>();
 
         private ILinkProvider defaultProvider;
 
@@ -20,16 +20,16 @@ namespace SongRedirector.Services
             {
                 return defaultProvider;
             }
-            lock (tenanteProviders)
+            lock (tenantProviders)
             {
 
-                if (tenanteProviders.TryGetValue(tenant, out ILinkProvider tenantProvider))
+                if (tenantProviders.TryGetValue(tenant, out ILinkProvider tenantProvider))
                 {
                     return tenantProvider;
                 }
 
                 var fileLinkProvider = new FileLinkProvider(tenant + ".songs");
-                tenanteProviders.Add(tenant, fileLinkProvider);
+                tenantProviders.Add(tenant, fileLinkProvider);
                 return fileLinkProvider;
             }
         }
