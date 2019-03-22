@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
-
-public class StaticLinkProvider : RandomLinkProvider
+namespace SongRedirector.Services
 {
-
-    private static readonly Link[] links =
+    public class StaticLinkProvider : RandomLinkProvider
     {
+
+        private static readonly Link[] links =
+        {
         new Link("Spongebob", "https://www.youtube.com/watch?v=r9L4AseD-aA", 10),
         new Link("Eskalation", "https://www.youtube.com/watch?v=J10LaIqHj2s", 10),
         new Link("My Little Pony", "https://www.youtube.com/watch?v=GHy0xktlsSI", 10),
@@ -32,11 +33,12 @@ public class StaticLinkProvider : RandomLinkProvider
         new Link("Wanabe","https://www.youtube.com/watch?v=gJLIiF15wjQ",10),
         new Link("Clap clap", "https://www.youtube.com/watch?v=NsWj6_AaNNE", 4),
         new Link("Kabinen Party","https://www.youtube.com/watch?v=9I-I6yMx23g",10)
-        
+
     };
 
-    protected override IEnumerable<Link> GetLinkList()
-    {
-        return links;
+        protected override IEnumerable<Link> GetLinkList()
+        {
+            return links;
+        }
     }
 }

@@ -10,5 +10,7 @@
     <PackageReference Include="csvhelper" Version="12.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
-
+<ItemGroup>
+  <EmbeddedResource Include="songs/Nexoneers.songs" />
+</ItemGroup>
 </Project>
