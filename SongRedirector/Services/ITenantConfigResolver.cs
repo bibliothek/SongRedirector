@@ -1,6 +1,6 @@
 namespace SongRedirector.Services
 {
-    public interface ITenantLinkProvider
+    public interface ITenantConfigResolver
     {
         ILinkProvider Resolve(string tenant);
     }

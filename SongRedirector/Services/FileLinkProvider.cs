@@ -16,7 +16,7 @@ public class FileLinkProvider : RandomLinkProvider
     }
     protected override IEnumerable<Link> GetLinkList()
     {
-        var assembly = typeof(TenantLinkProvider).Assembly;
+        var assembly = typeof(TenantConfigResolver).Assembly;
         string filePath =  "SongRedirector.songs." + FileName;
         using (Stream resource = assembly.GetManifestResourceStream(filePath))
         {

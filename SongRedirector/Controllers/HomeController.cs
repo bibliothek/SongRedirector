@@ -10,9 +10,9 @@ namespace SongRedirector.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ITenantLinkProvider tenantLinkProvider;
+        private readonly ITenantConfigResolver tenantLinkProvider;
 
-        public HomeController(ITenantLinkProvider tenantLinkProvider)
+        public HomeController(ITenantConfigResolver tenantLinkProvider)
         {
             this.tenantLinkProvider = tenantLinkProvider;
         }

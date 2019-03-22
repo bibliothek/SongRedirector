@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using System.IO;
+
 namespace SongRedirector.Services
 {
-    public class TenantLinkProvider : ITenantLinkProvider
+    public class TenantConfigResolver : ITenantConfigResolver
     {
 
         private Dictionary<string, ILinkProvider> tenantProviders = new Dictionary<string, ILinkProvider>();
