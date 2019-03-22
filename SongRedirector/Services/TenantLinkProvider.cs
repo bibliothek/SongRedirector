@@ -7,29 +7,19 @@ namespace SongRedirector.Services
 
         private Dictionary<string, ILinkProvider> tenantProviders = new Dictionary<string, ILinkProvider>();
 
-        private ILinkProvider defaultProvider;
-
-        public TenantLinkProvider(ILinkProvider defaultProvider)
-        {
-            this.defaultProvider = defaultProvider;
-        }
-
         public ILinkProvider Resolve(string tenant)
         {
-            if (string.IsNullOrWhiteSpace(tenant))
-            {
-                return defaultProvider;
-            }
+            var config = string.IsNullOrEmpty(tenant) ? "default" : tenant;
             lock (tenantProviders)
             {
 
-                if (tenantProviders.TryGetValue(tenant, out ILinkProvider tenantProvider))
+                if (tenantProviders.TryGetValue(config, out ILinkProvider tenantProvider))
                 {
                     return tenantProvider;
                 }
 
-                var fileLinkProvider = new FileLinkProvider(tenant + ".songs");
-                tenantProviders.Add(tenant, fileLinkProvider);
+                var fileLinkProvider = new FileLinkProvider(config + ".songs");
+                tenantProviders.Add(config, fileLinkProvider);
                 return fileLinkProvider;
             }
         }

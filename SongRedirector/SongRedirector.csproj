@@ -12,5 +12,6 @@
   </ItemGroup>
 <ItemGroup>
   <EmbeddedResource Include="songs/nexoneers.songs" />
+  <EmbeddedResource Include="songs/default.songs" />
 </ItemGroup>
 </Project>

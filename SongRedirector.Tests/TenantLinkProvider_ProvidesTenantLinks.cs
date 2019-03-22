@@ -9,7 +9,7 @@ namespace SongRedirector.Tests
         [Fact]
         public void TenantLinkProvider_ProvidesTenantLinks_FindTenant()
         {
-            TenantLinkProvider tenantLinkProvider = new TenantLinkProvider(null);
+            TenantLinkProvider tenantLinkProvider = new TenantLinkProvider();
             var provider = tenantLinkProvider.Resolve("nexoneers");
             var result = provider.GetLink();
 
@@ -17,12 +17,13 @@ namespace SongRedirector.Tests
         }
 
         [Fact]
-        public void TenantLinkProvider_ProvidesTenantLinks_NotFindTenant()
+        public void TenantLinkProvider_ProvidesTenantLinks_DefaultTenant()
         {
-            TenantLinkProvider tenantLinkProvider = new TenantLinkProvider(null);
+            TenantLinkProvider tenantLinkProvider = new TenantLinkProvider();
             var provider = tenantLinkProvider.Resolve("");
-            
-            Assert.Null(provider);
+            var result = provider.GetLink();
+
+            Assert.NotNull(result);
         }
     }
 }
