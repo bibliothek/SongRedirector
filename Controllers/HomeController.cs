@@ -15,9 +15,9 @@ namespace SongRedirector.Controllers
         {
             this.linkProvider = linkProvider;
         }
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] string tenant = "")
         {
-            string uri = linkProvider.GetLink();
+            string uri = linkProvider.GetLink(tenant);
             return Redirect(uri);
         }
 
