@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-
-public class StaticLinkProvider : ILinkProvider
+namespace SongRedirector.Services
 {
-    private static readonly Random rnd = new Random();
-
-    private static readonly Link[] links =
+    public class StaticLinkProvider : RandomLinkProvider
     {
+
+        private static readonly Link[] links =
+        {
         new Link("Spongebob", "https://www.youtube.com/watch?v=r9L4AseD-aA", 10),
         new Link("Eskalation", "https://www.youtube.com/watch?v=J10LaIqHj2s", 10),
         new Link("My Little Pony", "https://www.youtube.com/watch?v=GHy0xktlsSI", 10),
@@ -31,25 +31,14 @@ public class StaticLinkProvider : ILinkProvider
         new Link("Green Day Holiday","https://www.youtube.com/watch?v=A1OqtIqzScI",10),
         new Link("Ollas Leiwand","https://www.youtube.com/watch?v=hRilPLU-9-0&list=OLAK5uy_mR4JTyNcvSBqxf8TiGAbofn97bJjfZx4M&index=14",10),
         new Link("Wanabe","https://www.youtube.com/watch?v=gJLIiF15wjQ",10),
-        new Link("Clap clap", "https://www.youtube.com/watch?v=NsWj6_AaNNE", 4)
+        new Link("Clap clap", "https://www.youtube.com/watch?v=NsWj6_AaNNE", 4),
+        new Link("Kabinen Party","https://www.youtube.com/watch?v=9I-I6yMx23g",10)
+
     };
 
-    private static List<Link> OrderedLinks { get; } = GenerateWeightedLinks();
-
-    public string GetLink()
-    {
-        var idx = rnd.Next(OrderedLinks.Count);
-        return OrderedLinks[idx].Uri;
-    }
-
-    private static List<Link> GenerateWeightedLinks()
-    {
-        var weightedLinks = new List<Link>();
-
-        foreach (var link in links)
-            for (var i = 0; i < link.Probability; i++)
-                weightedLinks.Add(link);
-
-        return weightedLinks;
+        protected override IEnumerable<Link> GetLinkList()
+        {
+            return links;
+        }
     }
 }
