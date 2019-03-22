@@ -11,6 +11,6 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 <ItemGroup>
-  <EmbeddedResource Include="songs/Nexoneers.songs" />
+  <EmbeddedResource Include="songs/nexoneers.songs" />
 </ItemGroup>
 </Project>
