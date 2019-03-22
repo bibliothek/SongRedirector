@@ -18,7 +18,7 @@ namespace SongRedirector.Services
                     return tenantProvider;
                 }
 
-                var fileLinkProvider = new FileLinkProvider(config + ".songs");
+                var fileLinkProvider = new EmbeddedFileLinkProvider(config);
                 tenantProviders.Add(config, fileLinkProvider);
                 return fileLinkProvider;
             }
