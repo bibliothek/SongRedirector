@@ -10,7 +10,7 @@ namespace SongRedirector.Tests
         [Fact]
         public void FileLinkProvider_FindsFile()
         {
-            FileLinkProvider fileLinkProvider = new FileLinkProvider("Nexoneers.songs");
+            FileLinkProvider fileLinkProvider = new FileLinkProvider("nexoneers.songs");
             var result = fileLinkProvider.GetLink();
 
             Assert.NotNull(result);

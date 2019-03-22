@@ -10,7 +10,7 @@ namespace SongRedirector.Tests
         public void TenantLinkProvider_ProvidesTenantLinks_FindTenant()
         {
             TenantLinkProvider tenantLinkProvider = new TenantLinkProvider(null);
-            var provider = tenantLinkProvider.Resolve("Nexoneers");
+            var provider = tenantLinkProvider.Resolve("nexoneers");
             var result = provider.GetLink();
 
             Assert.NotNull(result);
