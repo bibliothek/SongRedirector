@@ -36,6 +36,7 @@ namespace SongRedirector
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseDeveloperExceptionPage();
 
             app.UseMvc(routes =>
             {
