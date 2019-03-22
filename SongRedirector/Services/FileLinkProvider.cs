@@ -27,6 +27,7 @@ public class FileLinkProvider : RandomLinkProvider
             using (var reader = new StreamReader(resource))
             using (var csv = new CsvReader(reader))
             {
+                csv.Configuration.Delimiter = ";";
                 return csv.GetRecords<Link>().ToArray();
             }
         }
