@@ -2,6 +2,7 @@
 using SongRedirector.Models;
 using SongRedirector.Services;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -9,19 +10,31 @@ namespace SongRedirector.Repository
 {
     public abstract class FileRepositoryBase : ILinkRepository
     {
+
+        private Dictionary<string, ILinkConfig> cachedConfigs = new Dictionary<string, ILinkConfig>();
+
         public ILinkConfig GetConfig(string configName)
         {
-            string configToUse = string.IsNullOrEmpty(configName) ? "default" : configName;
-            
-            using (Stream resource = GetFileStream(configToUse))
+            string configKey = string.IsNullOrEmpty(configName) ? "default" : configName;
+
+            ILinkConfig config;
+
+            if(cachedConfigs.TryGetValue(configKey, out config))
             {
-                return GetLinks(resource);
+                return config;
+            }
+            
+            using (Stream resource = GetFileStream(configKey))
+            {
+                config = GetConfig(resource);
+                cachedConfigs[configKey] = config;
+                return config;
             }
         }
 
         protected abstract Stream GetFileStream(string configName);
 
-        private ILinkConfig GetLinks(Stream stream)
+        private ILinkConfig GetConfig(Stream stream)
         {
             if (stream == null)
             {
