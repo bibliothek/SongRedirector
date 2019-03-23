@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SongRedirector.Repository;
 using SongRedirector.Services;
 
 namespace SongRedirector
@@ -26,7 +27,8 @@ namespace SongRedirector
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<ITenantConfigResolver, TenantConfigResolver>();
+            services.AddSingleton<ILinkRepository, EmbeddedFileRepository>();
+            services.AddSingleton<ILinkProvider, RandomLinkProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

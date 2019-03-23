@@ -3,6 +3,6 @@ namespace SongRedirector.Services
 {
     public interface ILinkProvider
     {
-        string GetLink();
+        string GetLink(string configName);
     }
 }

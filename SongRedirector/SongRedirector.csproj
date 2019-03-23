@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="csvhelper" Version="12.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
   </ItemGroup>
 <ItemGroup>
   <EmbeddedResource Include="songs/nexoneers.songs" />

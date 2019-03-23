@@ -5,16 +5,15 @@ namespace SongRedirector.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ITenantConfigResolver tenantLinkProvider;
+        private readonly ILinkProvider linkProvider;
 
-        public HomeController(ITenantConfigResolver tenantLinkProvider)
+        public HomeController(ILinkProvider linkProvider)
         {
-            this.tenantLinkProvider = tenantLinkProvider;
+            this.linkProvider = linkProvider;
         }
         public IActionResult Index([FromQuery] string tenant = "")
         {
-            var linkProviderForRequest = tenantLinkProvider.Resolve(tenant);
-            var uri = linkProviderForRequest.GetLink();
+            var uri = linkProvider.GetLink(tenant);
             return Redirect(uri);
         }
 
