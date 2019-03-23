@@ -17,15 +17,15 @@ namespace SongRedirector.Controllers
             this.linkProvider = linkProvider;
             this.linkRepository = linkRepository;
         }
-        public IActionResult Index([FromQuery] string tenant = "")
+        public IActionResult Index([FromRoute]string id = "")
         {
-            var uri = linkProvider.GetLink(tenant);
+            var uri = linkProvider.GetLink(id);
             return Redirect(uri);
         }
 
-        public IActionResult List([FromQuery] string tenant = "")
+        public IActionResult List([FromRoute] string id = "")
         {
-            var config = linkRepository.GetConfig(tenant);
+            var config = linkRepository.GetConfig(id);
             var sb = new StringBuilder();
             foreach(var link in config.Links)
             {
