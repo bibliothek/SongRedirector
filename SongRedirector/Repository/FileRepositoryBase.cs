@@ -19,11 +19,11 @@ namespace SongRedirector.Repository
 
             ILinkConfig config;
 
-            if(cachedConfigs.TryGetValue(configKey, out config))
+            if (cachedConfigs.TryGetValue(configKey, out config))
             {
                 return config;
             }
-            
+
             using (Stream resource = GetFileStream(configKey))
             {
                 config = GetConfig(resource);
