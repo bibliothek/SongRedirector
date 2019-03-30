@@ -61,7 +61,20 @@ namespace SongRedirector.Repository
                 return new LinkConfig(csv.GetRecords<Link>().ToArray(), configName);
             }
         }
-        
 
+        public void Save(string configName, Link link)
+        {
+            var config = GetConfig(configName);
+            if (link.Id == 0)
+            {
+                link.Id = config.GetNewId();
+            }
+            var newLinks = config.Links.Where(x => x.Id != link.Id).Append(link).ToArray();
+            var newConfig = new LinkConfig(newLinks, configName);
+            SaveInternal(configName, newConfig);
+            cachedConfigs.Remove(configName);
+        }
+
+        internal abstract void SaveInternal(string configName, ILinkConfig config);
     }
 }

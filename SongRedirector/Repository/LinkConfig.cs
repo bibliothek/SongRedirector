@@ -1,5 +1,6 @@
 ﻿using SongRedirector.Services;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SongRedirector.Repository
 {
@@ -16,6 +17,11 @@ namespace SongRedirector.Repository
         public Link[] Links { get; private set; }
         public string Name { get; }
         public Link[] WeightedLinks { get; private set; }
+
+        public int GetNewId()
+        {
+            return Links.Max(x=>x.Id) + 1;
+        }
 
         private List<Link> GenerateWeightedLinks(Link[] links)
         {

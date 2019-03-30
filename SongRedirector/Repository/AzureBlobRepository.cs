@@ -58,5 +58,10 @@ namespace SongRedirector.Repository
             return memStream;
 
         }
+
+        internal override void SaveInternal(string configName, ILinkConfig linkConfig)
+        {
+            Save(configName, linkConfig);
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SongRedirector.Models;
 using SongRedirector.Repository;
 
 namespace SongRedirector.Controllers
@@ -16,15 +17,25 @@ namespace SongRedirector.Controllers
             this.linkRepository = linkRepository;
         }
 
+        [HttpGet]
         public IActionResult Create([FromRoute]string config = "")
         {
-            return View();
+            return View(new LinkModel() { ConfigName = config});
         }
 
+        [HttpGet]
         public IActionResult Edit([FromRoute]string config = "", [FromRoute]int id = 0)
         {
             var link = linkRepository.GetLink(config, id);
-            return View();
+            return View(new LinkModel(config, link));
+        }
+
+
+        [HttpPost]
+        public IActionResult Save(LinkModel linkModel)
+        {
+            linkRepository.Save(linkModel.ConfigName, linkModel.Link);
+            return RedirectToAction("Index", "Config", new { config = linkModel.ConfigName });
         }
 
         public IActionResult Delete([FromRoute]string config = "", [FromRoute]int id = 0)

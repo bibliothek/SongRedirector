@@ -14,6 +14,8 @@ namespace SongRedirector.Models
             Link = link;
         }
 
+        public LinkModel() { }
+
         public string ConfigName { get; set; }
 
         public Link Link { get; set; }

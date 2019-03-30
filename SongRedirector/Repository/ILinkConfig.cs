@@ -12,5 +12,7 @@ namespace SongRedirector.Repository
         string Name { get; }
 
         Link[] WeightedLinks { get; }
+
+        int GetNewId();
     }
 }

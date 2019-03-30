@@ -11,8 +11,10 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Save">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(model => model.Link.Id, Model.Link.Id)
+            @Html.HiddenFor(model => model.ConfigName, Model.ConfigName)
             <div class="form-group">
                 <label asp-for="Link.DisplayName" class="control-label"></label>
                 <input asp-for="Link.DisplayName" class="form-control" />

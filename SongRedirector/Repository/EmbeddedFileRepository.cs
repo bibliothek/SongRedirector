@@ -15,5 +15,10 @@ namespace SongRedirector.Repository
             string filePath = "SongRedirector.songs." + configName + ".songs";
             return assembly.GetManifestResourceStream(filePath);
         }
+
+        internal override void SaveInternal(string configName, ILinkConfig link)
+        {
+            // do nothing
+        }
     }
 }
