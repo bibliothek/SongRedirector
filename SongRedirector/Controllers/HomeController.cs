@@ -17,21 +17,10 @@ namespace SongRedirector.Controllers
             this.linkProvider = linkProvider;
             this.linkRepository = linkRepository;
         }
-        public IActionResult Index([FromRoute]string id = "")
+        public IActionResult Index([FromRoute]string config = "")
         {
-            var uri = linkProvider.GetLink(id);
+            var uri = linkProvider.GetLink(config);
             return Redirect(uri);
-        }
-
-        public IActionResult List([FromRoute] string id = "")
-        {
-            var config = linkRepository.GetConfig(id);
-            var sb = new StringBuilder();
-            foreach(var link in config.Links)
-            {
-                sb.Append($"{link.DisplayName}: {link.Uri} (Probability: {link.Probability}){Environment.NewLine}");
-            }
-            return Content(sb.ToString());
         }
 
     }

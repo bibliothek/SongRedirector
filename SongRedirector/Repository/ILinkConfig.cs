@@ -3,11 +3,13 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SongRedirector.Models
+namespace SongRedirector.Repository
 {
     public interface ILinkConfig
     {
         Link[] Links { get; }
+
+        string Name { get; }
 
         Link[] WeightedLinks { get; }
     }

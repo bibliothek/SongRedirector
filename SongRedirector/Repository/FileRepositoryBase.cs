@@ -13,6 +13,12 @@ namespace SongRedirector.Repository
 
         private Dictionary<string, ILinkConfig> cachedConfigs = new Dictionary<string, ILinkConfig>();
 
+        public void Delete(string config, int id)
+        {
+            DeleteInternal(config, id);
+            cachedConfigs.Remove(config);
+        }
+
         public ILinkConfig GetConfig(string configName)
         {
             string configKey = string.IsNullOrEmpty(configName) ? "default" : configName;
@@ -26,15 +32,23 @@ namespace SongRedirector.Repository
 
             using (Stream resource = GetFileStream(configKey))
             {
-                config = GetConfig(resource);
+                config = GetConfig(resource, configKey);
                 cachedConfigs[configKey] = config;
                 return config;
             }
         }
 
+        protected abstract void DeleteInternal(string config, int id);
+
+        public Link GetLink(string configName, int id)
+        {
+            var config = GetConfig(configName);
+            return config.Links.FirstOrDefault(x => x.Id == id);
+        }
+
         protected abstract Stream GetFileStream(string configName);
 
-        private ILinkConfig GetConfig(Stream stream)
+        private ILinkConfig GetConfig(Stream stream, string configName)
         {
             if (stream == null)
             {
@@ -44,9 +58,10 @@ namespace SongRedirector.Repository
             using (var csv = new CsvReader(reader))
             {
                 csv.Configuration.Delimiter = ";";
-                return new LinkConfig(csv.GetRecords<Link>().ToArray());
+                return new LinkConfig(csv.GetRecords<Link>().ToArray(), configName);
             }
         }
+        
 
     }
 }

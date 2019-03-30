@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.Options;
+﻿using CsvHelper;
+using Microsoft.Extensions.Options;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace SongRedirector.Repository
 {
@@ -24,7 +26,28 @@ namespace SongRedirector.Repository
             container = client.GetContainerReference(settings.ContainerName);
         }
 
+        protected override void DeleteInternal(string configName, int id)
+        {
+            var conf = GetConfig(configName);
+            var newLinks = conf.Links.Where(x => x.Id != id).ToArray();
+            var newConf = new LinkConfig(newLinks, configName);
+            Save(configName, newConf);
+        }
 
+        private void Save(string configName, ILinkConfig linkConfig)
+        {
+            var blob = container.GetBlockBlobReference(configName + ".songs");
+            var tempFile = Path.GetTempFileName();
+            using (var stream = File.OpenWrite(tempFile))
+            using (var writer = new StreamWriter(stream))
+            using (var csvWriter = new CsvWriter(writer))
+            {
+                csvWriter.Configuration.Delimiter = ";";
+                csvWriter.WriteRecords(linkConfig.Links);
+            }
+            blob.UploadFromFileAsync(tempFile).Wait();
+            File.Delete(tempFile);
+        }
 
         protected override Stream GetFileStream(string configName)
         {

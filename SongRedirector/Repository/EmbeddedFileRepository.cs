@@ -4,6 +4,11 @@ namespace SongRedirector.Repository
 {
     public class EmbeddedFileRepository : FileRepositoryBase
     {
+        protected override void DeleteInternal(string config, int id)
+        {
+            // do nothing
+        }
+
         protected override Stream GetFileStream(string configName)
         {
             var assembly = typeof(EmbeddedFileRepository).Assembly;

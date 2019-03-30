@@ -1,7 +1,9 @@
-namespace SongRedirector.Services
+namespace SongRedirector.Repository
 {
     public class Link
     {
+        public int Id { get; set; }
+
         public string DisplayName { get; set; }
 
         public string Uri { get; set; }
@@ -12,8 +14,9 @@ namespace SongRedirector.Services
         {
 
         }
-        public Link(string displayName, string uri, int probability = 1)
+        public Link(int id, string displayName, string uri, int probability = 1)
         {
+            Id = id;
             DisplayName = displayName;
             Uri = uri;
             Probability = probability;
