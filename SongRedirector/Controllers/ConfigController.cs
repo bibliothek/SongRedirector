@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -17,12 +18,11 @@ namespace SongRedirector.Controllers
             this.linkRepository = linkRepository;
         }
 
-        public IActionResult Index([FromRoute]string config = "")
+        public IActionResult Index([FromRoute]string config)
         {
             var conf = linkRepository.GetConfig(config);
             return View(new ConfigModel(conf));
         }
-        
 
     }
 }

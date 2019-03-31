@@ -18,13 +18,13 @@ namespace SongRedirector.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create([FromRoute]string config = "")
+        public IActionResult Create([FromRoute]string config)
         {
             return View(new LinkModel() { ConfigName = config});
         }
 
         [HttpGet]
-        public IActionResult Edit([FromRoute]string config = "", [FromRoute]int id = 0)
+        public IActionResult Edit([FromRoute]string config, [FromRoute]int id)
         {
             var link = linkRepository.GetLink(config, id);
             return View(new LinkModel(config, link));
@@ -38,7 +38,7 @@ namespace SongRedirector.Controllers
             return RedirectToAction("Index", "Config", new { config = linkModel.ConfigName });
         }
 
-        public IActionResult Delete([FromRoute]string config = "", [FromRoute]int id = 0)
+        public IActionResult Delete([FromRoute]string config, [FromRoute]int id)
         {
             linkRepository.Delete(config, id);
             return RedirectToAction("Index", "Config",new { config});

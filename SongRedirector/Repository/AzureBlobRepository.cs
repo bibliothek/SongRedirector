@@ -53,7 +53,14 @@ namespace SongRedirector.Repository
         {
             var blob = container.GetBlockBlobReference(configName + ".songs");
             var memStream = new MemoryStream();
-            blob.DownloadToStreamAsync(memStream).Wait();
+            try
+            {
+                blob.DownloadToStreamAsync(memStream).Wait();
+            }
+            catch (AggregateException)
+            {
+                throw new NoValidConfigException(configName);
+            }
             memStream.Position = 0;
             return memStream;
 
