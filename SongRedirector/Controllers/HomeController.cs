@@ -6,6 +6,7 @@ using System.Linq;
 using System;
 using SongRedirector.Models;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace SongRedirector.Controllers
 {
@@ -28,7 +29,14 @@ namespace SongRedirector.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var exception = HttpContext.Features.Get<IExceptionHandlerPathFeature>().Error;
+            var errorViewModel = new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
+            var noValidConfigException = exception as NoValidConfigException;
+            if (noValidConfigException != null)
+            {
+                errorViewModel.Message = noValidConfigException.ToString();
+            }
+            return View(errorViewModel);
         }
     }
 }
