@@ -1,0 +1,46 @@
+﻿@model SongRedirector.Models.LinkModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Link</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Save">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(model => model.Link.Id, Model.Link.Id)
+            @Html.HiddenFor(model => model.ConfigName, Model.ConfigName)
+            <div class="form-group">
+                <label asp-for="Link.DisplayName" class="control-label"></label>
+                <input asp-for="Link.DisplayName" class="form-control" />
+                <span asp-validation-for="Link.DisplayName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Link.Uri" class="control-label"></label>
+                <input asp-for="Link.Uri" class="form-control" />
+                <span asp-validation-for="Link.Uri" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Link.Probability" class="control-label"></label>
+                <input asp-for="Link.Probability" class="form-control" />
+                <span asp-validation-for="Link.Probability" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "Config", new { config = Model.ConfigName })
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
