@@ -1,27 +1,158 @@
 Id;DisplayName;Uri;Probability
-1;"Spongebob";"https://www.youtube.com/watch?v=r9L4AseD-aA";10
-2;"Eskalation";"https://www.youtube.com/watch?v=J10LaIqHj2s";10
-3;"My Little Pony";"https://www.youtube.com/watch?v=GHy0xktlsSI";10
-4;"Eternity Frog";"https://soundcloud.com/eternityfrog/her-face-1/s-kGyZs";10
-5;"Bob Marley";"https://www.youtube.com/watch?v=X2W3aG8uizA";10
-6;"Tool Time";"https://www.youtube.com/watch?v=Ejz_1qoE7hc";10
-7;"Urlaub fürs Gehirn";"https://www.youtube.com/watch?v=HforN-mMMsE";10
-8;"Cocain";"https://www.youtube.com/watch?v=zVOuRQPPdoo";10
-9;"In Hell I'll Be In Good Company";"https://www.youtube.com/watch?v=B9FzVhw8_bY";10
-10;"The Tropper";"https://www.youtube.com/watch?v=Li58voy6xXM";10
-11;"Rick Rolled";"https://www.youtube.com/watch?v=dQw4w9WgXcQ";1
-12;"Whisky in the Jar";"https://www.youtube.com/watch?v=wsrvmNtWU4E";10
-13;"Mama Lauda";"https://www.youtube.com/watch?v=vloUhu7QxmU";10
-14;"Castle on the hill";"https://www.youtube.com/watch?v=Ytb7J0ciBcE";10
-15;"Shake it off";"https://www.youtube.com/watch?v=8XFBUM8dMqw";10
-16;"Best song in the world";"https://www.youtube.com/watch?v=_lK4cX5xGiQ";10
-17;"Killing in the name of";"https://www.youtube.com/watch?v=B5NoXaSajq0";10
-18;"Rockstar";"https://www.youtube.com/watch?v=DmeUuoxyt_E";10
-19;"Grilfirend";"https://www.youtube.com/watch?v=Bg59q4puhmg";10
-20;"4 chord song";"https://youtu.be/5pidokakU4I?t=58";10
-21;"Whats my age again";"https://www.youtube.com/watch?v=JZioV5d3osg";10
-22;"Green Day Holiday";"https://www.youtube.com/watch?v=A1OqtIqzScI";10
-23;"Ollas Leiwand";"https://www.youtube.com/watch?v=hRilPLU-9-0&list=OLAK5uy_mR4JTyNcvSBqxf8TiGAbofn97bJjfZx4M&index=14";10
-24;"Wanabe";"https://www.youtube.com/watch?v=gJLIiF15wjQ";10
-25;"Clap clap";"https://www.youtube.com/watch?v=NsWj6_AaNNE";4
-26;"Kabinen Party";"https://www.youtube.com/watch?v=9I-I6yMx23g";10
+1;"Cocain";"https://www.youtube.com/watch?v=zVOuRQPPdoo";10
+3;"Kabinen Party";"https://www.youtube.com/watch?v=9I-I6yMx23g";10
+4;"Shake it off";"https://www.youtube.com/watch?v=8XFBUM8dMqw";10
+5;"4 chord song";"https://youtu.be/5pidokakU4I?t=58";10
+6;"Lady in Red";https://www.youtube.com/watch?v=lODr_8cZPp0;10
+7;"White trahs millionaire";https://www.youtube.com/watch?v=ZQ8itDYP6HU;10
+8;"Run to the hills";https://www.youtube.com/watch?v=8jGAfzrdpxo;10
+9;"Hands up";https://www.youtube.com/watch?v=6rPY8Z10OjE;10
+10;"Bad Girlfriend";https://www.youtube.com/watch?v=9YrWsmlJSiw;10
+11;"Death to all but metal";https://www.youtube.com/watch?v=yfB7vF7nCdA;10
+12;"Now that we are dead";https://www.youtube.com/watch?v=QlF4rhAbwyc;10
+13;"Uptown Funk";https://www.youtube.com/watch?v=OPf0YbXqDm0;10
+14;"Ollas Leiwand";"https://www.youtube.com/watch?v=hRilPLU-9-0";10
+15;"A Lebrkäs Semmel";https://www.youtube.com/watch?v=kL0ACZbFi5Q;5
+16;"Beste Leberkäse";https://www.youtube.com/watch?v=fLFFy0c4PnM;5
+17;"Dreh den swag auf";https://www.youtube.com/watch?v=drmXWo8ttrM;5
+18;"The Sun Sets here";"https://youtu.be/6_5j2Nn938k";5
+19;"Zehn Mark Fünfzig";"https://youtu.be/6aR-ISic8IY";10
+20;"Der Himmel ist Blau";"https://youtu.be/goSlG0fSH_g";4
+21;"Scary Monsters & Nice Sprites (Spitfya Remix)";"https://youtu.be/ql5xae1G75Q";10
+22;"Bug Thief";"https://youtu.be/6cXyJK6TYLo";6
+23;"Breaking the Habit";"https://youtu.be/v2H4l9RpkwM";6
+24;"Moon Theme Remix";"https://youtu.be/EwbMkIROOGU";3
+25;"Photograph";"https://youtu.be/T3rXdeOvhNE";1
+26;"Shut up and Dance";"https://youtu.be/6JCLY0Rlx6Q";4
+27;"Give Into DnB";"https://youtu.be/Xw7mcpXRXfg";6
+28;"Talk Dirty";"https://youtu.be/yvEWNlcefAw";4
+29;"Don't say Anything";"https://youtu.be/iBtg-GGUN5E";6
+30;"Roundtable Rival";"https://youtu.be/jvipPYFebWc";5
+31;"Hawai Toast";"https://youtu.be/DHHAR1S_eKA;",3
+32;"Vienna's Burning";"https://youtu.be/7xDp0p1pWL4";6
+33;"The Death of Katha Kassin";"https://youtu.be/zIeduHw_jIY";6
+34;"I am on Youporn.com";"https://youtu.be/zXrMYedl46c?t=44";4
+35;"Dance of the Dead";"https://youtu.be/iYsuDbEVfV8";7
+36;"Call me Maybe (not the original)";"https://youtu.be/28dDYLaR4lM";1
+37;"Call me maybe (the real one)";"https://youtu.be/fWNaR-rxAic";3
+38;"Pixel Galaxy";"https://youtu.be/y1rj_ORa-bI";6 
+39;"Shiny Happy People";"https://www.youtube.com/watch?v=1H20W0e_oSM";10
+40;"Road To Nowhere";"https://www.youtube.com/watch?v=1H20W0e_oSM";8
+41;"Somewhere over the Rainbow";"https://www.youtube.com/watch?v=V1bFr2SWP1I";8
+42;"I Want You Back";"https://www.youtube.com/watch?v=DGDyAb6pePo";10
+43;"Basket Case";"https://www.youtube.com/watch?v=GTwJo0HeNmU";10
+44;"I Wanna Be Like You";"https://www.youtube.com/watch?v=9JDzlhW3XTM";8
+45;"Mustang Sally";"https://www.youtube.com/watch?v=16u6w0cjjrU";10
+46;"Wannabe";"https://www.youtube.com/watch?v=fw-QRyQcFH8";6
+47;"Bohemian Rhapsody";"https://www.youtube.com/watch?v=fJ9rUzIMcZQ";10
+48;"Stifled Man Casino";"https://www.youtube.com/watch?v=AqNGlKFLOjE";8
+49;"Leider Geil";"https://www.youtube.com/watch?v=ZPJlyRv_IGI";8
+50;"Self Esteem";"https://www.youtube.com/watch?v=eeWjzBHUdsI";8
+51;"Barbie Girl";"https://www.youtube.com/watch?v=ZyhrYis509A";6
+52;"Uptown Girl";"https://www.youtube.com/watch?v=X-1dn0g1uQk";8
+53;"I Want It That Way";"https://www.youtube.com/watch?v=EylafK1IwHE";8
+54;"Sexual Healing";"https://www.youtube.com/watch?v=rjlSiASsUIs";8
+55;"Guten Tag";"https://www.youtube.com/watch?v=Vt8qY5KY9dQ";6
+56;"Here Comes Your Man";"https://www.youtube.com/watch?v=tPgf_btTFlc";10
+57;"Where Is My Mind";"https://www.youtube.com/watch?v=N3oCS85HvpY";10
+58;"Drive";"https://www.youtube.com/watch?v=fgT9zGkiLig";10
+59;"Short Skirt, Long Jacket";"https://www.youtube.com/watch?v=VZIM2OuXjjg";10
+60;"Once in a Lifetime";"https://www.youtube.com/watch?v=Lw2ilqaLzuA";8
+61;"Today";"https://www.youtube.com/watch?v=eRb9oOhUOoE";10
+62;"No, No No";"https://www.youtube.com/watch?v=0mNPKNAQl4c";10
+63;"The Impression That I Get";"https://www.youtube.com/watch?v=NIGMUAMevH0";10
+64;"Killing";"https://www.youtube.com/watch?v=jL3X20QP4Ts";10
+65;"You Can Get It If You Really Want";"https://www.youtube.com/watch?v=iWrIJnWiIDo";10
+66;"Sweet Child O Mine";"https://www.youtube.com/watch?v=Zdh2hot8rjU";8
+67;"Here Comes The Sun";"https://www.youtube.com/watch?v=NJiC6cA3dUA";8
+68;"Move On Up";"https://www.youtube.com/watch?v=6Z66wVo7uNw";10
+69;"I'm Leaving";"https://www.youtube.com/watch?v=lMTZa82UVqE";10
+70;"Dazed and Confused";"https://www.youtube.com/watch?v=-rmtJ6-EY1E";10
+71;"Teen Age Riot";"https://www.youtube.com/watch?v=xvDuATZCY8I";8
+72;"She Sells Sanctuary";"https://www.youtube.com/watch?v=cQS4TzB0EvU";10
+73;"Common People";"https://www.youtube.com/watch?v=f4BNVD5v2EU";10
+74;"100% Dundee";"https://www.youtube.com/watch?v=OTuHyZ5Bks4";8
+75;"Wooden Heart";"https://www.youtube.com/watch?v=X02t8vKLtbw";8
+76;"Set You Free";"https://www.youtube.com/watch?v=l5IcyBEvXRQ";10
+77;"One Armed Scissor";"https://www.youtube.com/watch?v=1ge6ttcFrvA";10
+78;"Cosmic Slop";"https://www.youtube.com/watch?v=H6SS7JDVRo0";10
+79;"That Lady (pts. 1 & 2)";"https://www.youtube.com/watch?v=a_jr0vaYhnE";10
+80;"The Revolution Will Not Be Televised";"https://www.youtube.com/watch?v=QnJFhuOWgXg";10
+81;"Trying To Make A Fool Of Me";"https://www.youtube.com/watch?v=DslSk317-Dc";10
+82;"Ready Or Not";"https://www.youtube.com/watch?v=q1NrmNz0bc4";10
+83;"Higher And Higher";"https://www.youtube.com/watch?v=mzDVaKRApcg";10
+84;"Seven Day Lover";"https://www.youtube.com/watch?v=jEdzddS1l2k";10
+85;"Then She Appeared";"https://www.youtube.com/watch?v=AR0uEEboNZc";10
+86;"The Ballad Of Peter Pumpkinhead";"https://www.youtube.com/watch?v=KSXjxP8TPlM";10
+87;"Earn Enough For Us";"https://www.youtube.com/watch?v=QeDDQqO9kWo";10
+88;"Paranoid";"https://www.youtube.com/watch?v=hkXHsK4AQPs";10
+89;"T.V. Eye";"https://www.youtube.com/watch?v=Oz9NZJOkJB0";10
+90;"Kick Out The Jams";"https://www.youtube.com/watch?v=ASwFOiu6brU";10
+91;"Nobody";"https://www.youtube.com/watch?v=H98VbZQTVag";10
+92;"Cause Ah Riot";"https://www.youtube.com/watch?v=_uUvmkJLiAY";10
+93;"Doom Riff";"https://www.youtube.com/watch?v=PoSey1QOSn8";10
+94;"Know Your Enemy";"https://www.youtube.com/watch?v=4smim2MNvF8";10
+95;"Wake Up";"https://www.youtube.com/watch?v=wauzrPn0cfg";10
+96;"Iron Tusk";"https://www.youtube.com/watch?v=tzVcC0TAN8k";10
+97;"Feed";"https://www.youtube.com/watch?v=S02xmF-RST0";10
+98;"The Action Is Go";"https://www.youtube.com/watch?v=VWuPqcYZ_sw";10
+99;"Midnight Swim";"https://www.youtube.com/watch?v=PAj8OEHj8fI";10
+100;"Set To Destruct";"https://www.youtube.com/watch?v=ZGEvhG3pfSg";10
+101;"Hot Pink";"https://www.youtube.com/watch?v=k0M3iIf2wdg";10
+102;"We Appreciate Power";"https://www.youtube.com/watch?v=gYG_4vJ4qNA";10
+103;"Maladie d'un Fou";"https://www.youtube.com/watch?v=vdlxPJDvLb8";10
+104;"Pass This On";"https://www.youtube.com/watch?v=ry4_9_Df-G4";10
+105;"Heartbeats";"https://www.youtube.com/watch?v=jcU7gmU1-WQ";10
+106;"Big Time Sensuality";"https://www.youtube.com/watch?v=B5Dc1LEn4AM";10
+107;"Obedear";"https://www.youtube.com/watch?v=ETbGpGJNVLM";10
+108;"Push Pull";"https://www.youtube.com/watch?v=xiV0RN0mPSk";10
+109;"Other People";"https://www.youtube.com/watch?v=Numt5oqS2Oo";10
+110;"Element";"https://www.youtube.com/watch?v=OUsMvz2YLOc";10
+111;"Witness (1 Hope)";"https://www.youtube.com/watch?v=PTOSvEX-YeY";10
+112;"Big Tings Gwidarn";"https://www.youtube.com/watch?v=syNDhzMAG9w";10
+113;"Fast Car";"https://www.youtube.com/watch?v=DwrHwZyFN7M";10
+114;"New Slang";"https://www.youtube.com/watch?v=zYwCmcB0XMw";10
+115;"My Sharona";"https://www.youtube.com/watch?v=BR2JtsVumFA";10
+116;"Comfortably Numb";"https://youtu.be/_FrOQC-zEog?t=40";5
+117;"True Faith";"https://www.youtube.com/watch?v=17CwZmI8mUQ";5
+118;"Last Night A DJ Saved My Life";"https://www.youtube.com/watch?v=GtfZbj4J71A";3
+119;"Midnight City";"https://www.youtube.com/watch?v=dX3k_QDnzHE";3
+120;"Lovesong";"https://www.youtube.com/watch?v=ks_qOI0lzho";4
+121;"Money For Nothing";"https://youtu.be/JRDgihVDEko?t=92";4
+122;"Informer";"https://www.youtube.com/watch?v=cFJu4HdFsHw";4
+123;"Ace Of Spades";"https://www.youtube.com/watch?v=HpwUTJsI3xI";5
+124;"Down Under";"https://www.youtube.com/watch?v=IzsZ9KC8k4w";3
+125;"Da Ya Think I'm Sexy?";"https://www.youtube.com/watch?v=Hphwfq1wLJs";7
+126;"Ma Baker";"https://www.youtube.com/watch?v=9c5yPIQ3LQI";4
+127;"Strangelove";"https://www.youtube.com/watch?v=JIrm0dHbCDU";5
+128;"Let's Groove";"https://www.youtube.com/watch?v=Lrle0x_DHBM";7
+129;"Rolex";"https://www.youtube.com/watch?v=lwk5OUII9Vc";10
+130;"Ich will immer wieder dieses Fieber Spür'n";"https://www.youtube.com/watch?v=S0nFAukTwVM";5
+131;"Luzia";"https://www.youtube.com/watch?v=MPHAZK1NZ9E";7
+132;"Choices";"https://www.youtube.com/watch?v=-zbw3KzgHBU";6
+133;"Sorry";"https://www.youtube.com/watch?v=fRh_vgS2dFE";10
+134;"Die Bierpartei";"https://www.youtube.com/watch?v=n1kuN57zOHg";5
+135;"Strada del sole";"https://www.youtube.com/watch?v=DaQUQmxmI1s";4
+136;"Maschin";"https://www.youtube.com/watch?v=9Ocyk0OgyWY";6
+137;"Motherlover";"https://www.youtube.com/watch?v=X0DeIqJm4vM";10
+138;"Donald Trump";"https://www.youtube.com/watch?v=74TFS8r_SMI";7
+139;"Not Fair";"https://www.youtube.com/watch?v=fUYaosyR4bE";8
+140;"Bugatti";"https://www.youtube.com/watch?v=llqagKv-nlI";7
+141;"I Love It (Kanye)";"https://www.youtube.com/watch?v=cwQgjq0mCdE";10
+142;"I Love It (Icon Pop)";"https://www.youtube.com/watch?v=UxxajLWwzqY";7
+143;"#Selfie";"https://www.youtube.com/watch?v=kdemFfbS5H0";10
+144;"Absätze > Haupsäte";"https://www.youtube.com/watch?v=UPrPoAH5xAQ";8
+145;"Bubblegum Bitch";"https://www.youtube.com/watch?v=d1eQLw0Nwto";7
+146;"Joker";"https://www.youtube.com/watch?v=YZo88P1Ie94";6
+147;"All I Do Is Win";"https://www.youtube.com/watch?v=GGXzlRoNtHU";10
+148;"Shake It Off";"https://www.youtube.com/watch?v=nfWlot6h_JM";9
+149;"Turn It Off";"https://www.youtube.com/watch?v=5KSBEChzpMM";8
+150;"Mens Not Hot";"https://www.youtube.com/watch?v=3M_5oYU-IsU";7
+151;"Ottakring";"https://www.youtube.com/watch?v=PZXndKjXRjU";6
+152;"Pillow Talking";"https://www.youtube.com/watch?v=NWWeQlXfSa0";10
+153;"Weil der Mensch zählt";"https://www.youtube.com/watch?v=KdeDYK9eFqs";8
+154;"GGGut";"https://www.youtube.com/watch?v=qy6YSOjInaE";7
+155;"We Made You";"https://www.youtube.com/watch?v=RSdKmX2BH7o";7
+156;"Simple";"https://www.youtube.com/watch?v=TuTDc9d_9yI";7
+157;"Party In The U.S.A";"https://www.youtube.com/watch?v=M11SvDtPBhA";10
+158;"Everybody";"https://www.youtube.com/watch?v=6M6samPEMpM";8
