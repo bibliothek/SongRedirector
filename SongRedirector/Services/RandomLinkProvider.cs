@@ -13,12 +13,12 @@ namespace SongRedirector.Services
             this.linkRepository = linkRepository;
         }
 
-        public string GetLink(string configName)
+        public Link GetLink(string configName)
         {
             var config = linkRepository.GetConfig(configName);
             var idx = rnd.Next(config.WeightedLinks.Length);
-            return config.WeightedLinks[idx].Uri;
+            return config.WeightedLinks[idx];
         }
-        
+
     }
 }

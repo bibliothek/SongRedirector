@@ -1,0 +1,13 @@
+﻿@model HomeModel
+
+@{
+    ViewData["Title"] = "Your Standup Song";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Your Standup Song</h1>
+<h2>@Model.Title</h2>
+
+<div class="text-center">
+    <iframe width="560" height="315" src="@Model.EmbedLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"  allowfullscreen></iframe>
+</div>
