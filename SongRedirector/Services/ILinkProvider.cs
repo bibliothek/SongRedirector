@@ -1,8 +1,11 @@
 
+using SongRedirector.Repository;
+
 namespace SongRedirector.Services
 {
     public interface ILinkProvider
     {
-        string GetLink(string configName);
+        Link GetLink(string configName);
+
     }
 }
