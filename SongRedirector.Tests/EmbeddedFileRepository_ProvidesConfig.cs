@@ -1,5 +1,6 @@
 using SongRedirector.Repository;
 using SongRedirector.Services;
+using System;
 using Xunit;
 
 namespace SongRedirector.Tests
@@ -22,9 +23,8 @@ namespace SongRedirector.Tests
         {
             EmbeddedFileRepository repo = new EmbeddedFileRepository();
 
-            var config = repo.GetConfig("");
+            Assert.Throws<ArgumentNullException>(() => repo.GetConfig(""));
 
-            Assert.NotNull(config);
         }
     }
 }
