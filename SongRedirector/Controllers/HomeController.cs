@@ -23,6 +23,12 @@ namespace SongRedirector.Controllers
         public IActionResult Index([FromRoute]string config)
         {
             var link = linkProvider.GetLink(config);
+            return Redirect(link.Uri);
+        }
+
+        public IActionResult Embed([FromRoute]string config)
+        {
+            var link = linkProvider.GetLink(config);
             if (string.IsNullOrEmpty(link.YouTubeEmbedCode))
             {
                 return Redirect(link.Uri);
