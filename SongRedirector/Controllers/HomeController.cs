@@ -22,8 +22,38 @@ namespace SongRedirector.Controllers
         }
         public IActionResult Index([FromRoute]string config)
         {
+            return Forward(config);
+        }
+
+        public IActionResult Forward([FromRoute]string config)
+        {
             var link = linkProvider.GetLink(config);
             return Redirect(link.Uri);
+        }
+
+        [HttpPost]
+        public IActionResult Vote([FromBody]VoteModel vote)
+        {
+            if(vote == null)
+            {
+                return BadRequest("No vote set");
+            }
+            int newProbability;
+            switch (vote.VoteType)
+            {
+                case VoteType.Upvote:
+                    newProbability = vote.Link.Probability + 1;
+                    break;
+                case VoteType.Downvote:
+                    newProbability = vote.Link.Probability - 1;
+                    break;
+                default:
+                    return BadRequest("Vote is neiter Upvote nor Downvote");
+            }
+            var newLink = vote.Link;
+            newLink.Probability = newProbability;
+            linkRepository.Save(vote.ConfigName, newLink);
+            return Ok();
         }
 
         public IActionResult Embed([FromRoute]string config)
@@ -33,7 +63,7 @@ namespace SongRedirector.Controllers
             {
                 return Redirect(link.Uri);
             }
-            var model = new HomeModel { EmbedLink = $"https://www.youtube.com/embed/{link.YouTubeEmbedCode}?rel=0&autoplay=1", Title = link.DisplayName };
+            var model = new HomeModel { Link = link, ConfigName = config};
             return View(model);
         }
 

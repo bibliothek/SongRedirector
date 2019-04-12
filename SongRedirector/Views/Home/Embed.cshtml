@@ -6,8 +6,71 @@
 }
 
 <h1>Your Standup Song</h1>
-<h2>@Model.Title</h2>
-
+<h2>@Model.GetTitle()</h2>
 <div class="text-center">
-    <iframe width="560" height="315" src="@Model.EmbedLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"  allowfullscreen></iframe>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <iframe width="560" height="315" src="@Model.GetEmbedLink()" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4">
+                <button id="upvote-btn"
+                        type="button"
+                        class="btn btn-primary btn-circle btn-lg">
+                    <i class="far fa-thumbs-up"></i>
+                </button>
+            </div>
+            <div class="col-4">
+                <button id="downvote-btn"
+                        type="button"
+                        class="btn btn-danger btn-circle btn-lg">
+                    <i class="far fa-thumbs-down"></i>
+                </button>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+    <div class="mt-5" id="alert-container"></div>
 </div>
+
+
+@section Scripts
+{
+    <script>
+        function alertTimeout(wait){
+                setTimeout(function(){
+                    $('#alert-container').children('.alert:first-child').remove();
+                },
+            wait);
+        }
+
+        function appendAlert() {
+            $('#alert-container').append('<div class="alert alert-success alert-dismissible fade show" role="alert"> Your vote has been submitted <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>'); 
+            alertTimeout(5000);
+        }
+
+    $("#upvote-btn").click(function () {
+        $.post(
+            {
+                url: '/home/vote',
+                data: '@Html.Raw(Json.Serialize(new VoteModel { VoteType = VoteType.Upvote, Link = Model.Link, ConfigName = Model.ConfigName}))',
+                success: appendAlert,
+                contentType: 'application/json'
+            }
+        );
+    });
+    $("#downvote-btn").click(function () {
+        $.post(
+            {
+                url: '/home/vote',
+                data: '@Html.Raw(Json.Serialize(new VoteModel { VoteType = VoteType.Downvote, Link = Model.Link, ConfigName = Model.ConfigName}))',
+                success: appendAlert,
+                contentType: 'application/json'
+            }
+        );
+    });
+    </script>
+}
