@@ -35,7 +35,6 @@
     </div>
     <div class="mt-5" id="alert-container"></div>
 </div>
-@Html.HiddenFor(m => m.Link.Probability)
 
 
 @section Scripts
@@ -54,32 +53,16 @@
         }
 
         
-        var probabilityElement = $('#Link_Probability')[0];
-
         $("#upvote-btn").click(function () {
-            var prob = parseInt(probabilityElement.value);
-            var newProb = prob + 1;
-            probabilityElement.value = newProb;
-            var model = JSON.parse('@Html.Raw(Json.Serialize(Model))');
-            model.link.probability = newProb;
-            $.post({
-                url: '/link/post',
-                data: JSON.stringify(model),
+            $.get({
+                url: '/link/upvote/@Model.ConfigName/@Model.Link.Id',
                 success: appendAlert,
-                contentType: 'application/json'
             });
         });
         $("#downvote-btn").click(function () {
-            var prob = parseInt(probabilityElement.value);
-            var newProb = prob - 1;
-            probabilityElement.value = newProb;
-            var model = JSON.parse('@Html.Raw(Json.Serialize(Model))');
-            model.link.probability = newProb;
-            $.post({
-                url: '/link/post',
-                data: JSON.stringify(model),
+            $.get({
+                url: '/link/downvote/@Model.ConfigName/@Model.Link.Id',
                 success: appendAlert,
-                contentType: 'application/json'
             });
         });
     </script>

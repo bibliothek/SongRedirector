@@ -73,6 +73,14 @@ namespace SongRedirector.Repository
             cachedConfigs.Remove(configName);
         }
 
+
+        public void ChangeProbability(string config, int id, int delta)
+        {
+            var link = GetLink(config, id);
+            link.Probability += delta;
+            Save(config, link);
+        }
+
         internal abstract void SaveInternal(string configName, ILinkConfig config);
     }
 }

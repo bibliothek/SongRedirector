@@ -30,11 +30,15 @@ namespace SongRedirector.Controllers
             return View(new LinkModel(config, link));
         }
 
-
-        [HttpPost]
-        public IActionResult Post([FromBody]LinkModel linkModel)
+        public IActionResult Upvote([FromRoute]string config, [FromRoute]int id)
         {
-            linkRepository.Save(linkModel.ConfigName, linkModel.Link);
+            linkRepository.ChangeProbability(config, id, 1);
+            return Ok();
+        }
+
+        public IActionResult Downvote([FromRoute]string config, [FromRoute]int id)
+        {
+            linkRepository.ChangeProbability(config, id, -1);
             return Ok();
         }
 
