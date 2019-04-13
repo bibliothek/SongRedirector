@@ -22,6 +22,11 @@ namespace SongRedirector.Controllers
         }
         public IActionResult Index([FromRoute]string config)
         {
+            return Forward(config);
+        }
+
+        public IActionResult Forward([FromRoute]string config)
+        {
             var link = linkProvider.GetLink(config);
             return Redirect(link.Uri);
         }
@@ -29,11 +34,11 @@ namespace SongRedirector.Controllers
         public IActionResult Embed([FromRoute]string config)
         {
             var link = linkProvider.GetLink(config);
-            if (string.IsNullOrEmpty(link.YouTubeEmbedCode))
+            if (string.IsNullOrEmpty(link.GetYouTubeEmbedCode()))
             {
                 return Redirect(link.Uri);
             }
-            var model = new HomeModel { EmbedLink = $"https://www.youtube.com/embed/{link.YouTubeEmbedCode}?rel=0&autoplay=1", Title = link.DisplayName };
+            var model = new HomeModel { Link = link, ConfigName = config};
             return View(model);
         }
 

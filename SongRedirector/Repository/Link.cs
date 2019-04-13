@@ -14,17 +14,6 @@ namespace SongRedirector.Repository
 
         public int Probability { get; set; }
 
-        public string YouTubeEmbedCode
-        {
-            get
-            {
-                var regex = @".*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*";
-                var match = System.Text.RegularExpressions.Regex.Match(Uri, regex);
-                var group = match.Groups[1];
-                return group.Success ? group.Value : null;
-            }
-        }
-
         public Link()
         {
 
@@ -35,6 +24,14 @@ namespace SongRedirector.Repository
             DisplayName = displayName;
             Uri = uri;
             Probability = probability;
+        }
+
+        public string GetYouTubeEmbedCode()
+        {
+            var regex = @".*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*";
+            var match = System.Text.RegularExpressions.Regex.Match(Uri, regex);
+            var group = match.Groups[1];
+            return group.Success ? group.Value : null;
         }
     }
 }
