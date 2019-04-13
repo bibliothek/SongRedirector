@@ -31,35 +31,10 @@ namespace SongRedirector.Controllers
             return Redirect(link.Uri);
         }
 
-        [HttpPost]
-        public IActionResult Vote([FromBody]VoteModel vote)
-        {
-            if(vote == null)
-            {
-                return BadRequest("No vote set");
-            }
-            int newProbability;
-            switch (vote.VoteType)
-            {
-                case VoteType.Upvote:
-                    newProbability = vote.Link.Probability + 1;
-                    break;
-                case VoteType.Downvote:
-                    newProbability = vote.Link.Probability - 1;
-                    break;
-                default:
-                    return BadRequest("Vote is neiter Upvote nor Downvote");
-            }
-            var newLink = vote.Link;
-            newLink.Probability = newProbability;
-            linkRepository.Save(vote.ConfigName, newLink);
-            return Ok();
-        }
-
         public IActionResult Embed([FromRoute]string config)
         {
             var link = linkProvider.GetLink(config);
-            if (string.IsNullOrEmpty(link.YouTubeEmbedCode))
+            if (string.IsNullOrEmpty(link.GetYouTubeEmbedCode()))
             {
                 return Redirect(link.Uri);
             }

@@ -19,7 +19,7 @@ namespace SongRedirector.Models
 
         public string GetEmbedLink()
         {
-            return $"https://www.youtube.com/embed/{Link.YouTubeEmbedCode}?rel=0&autoplay=1";
+            return $"https://www.youtube.com/embed/{Link.GetYouTubeEmbedCode()}?rel=0&autoplay=1";
         }
         
     }

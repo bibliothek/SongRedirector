@@ -32,6 +32,13 @@ namespace SongRedirector.Controllers
 
 
         [HttpPost]
+        public IActionResult Post([FromBody]LinkModel linkModel)
+        {
+            linkRepository.Save(linkModel.ConfigName, linkModel.Link);
+            return Ok();
+        }
+
+        [HttpPost]
         public IActionResult Save(LinkModel linkModel)
         {
             linkRepository.Save(linkModel.ConfigName, linkModel.Link);

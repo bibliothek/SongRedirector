@@ -35,42 +35,52 @@
     </div>
     <div class="mt-5" id="alert-container"></div>
 </div>
+@Html.HiddenFor(m => m.Link.Probability)
 
 
 @section Scripts
 {
     <script>
-        function alertTimeout(wait){
-                setTimeout(function(){
+        function alertTimeout(wait) {
+            setTimeout(function () {
                     $('#alert-container').children('.alert:first-child').remove();
                 },
-            wait);
+                wait);
         }
 
         function appendAlert() {
-            $('#alert-container').append('<div class="alert alert-success alert-dismissible fade show" role="alert"> Your vote has been submitted <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>'); 
+            $('#alert-container').append('<div class="alert alert-success alert-dismissible fade show" role="alert"> Your vote has been submitted <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>');
             alertTimeout(5000);
         }
 
-    $("#upvote-btn").click(function () {
-        $.post(
-            {
-                url: '/home/vote',
-                data: '@Html.Raw(Json.Serialize(new VoteModel { VoteType = VoteType.Upvote, Link = Model.Link, ConfigName = Model.ConfigName}))',
+        
+        var probabilityElement = $('#Link_Probability')[0];
+
+        $("#upvote-btn").click(function () {
+            var prob = parseInt(probabilityElement.value);
+            var newProb = prob + 1;
+            probabilityElement.value = newProb;
+            var model = JSON.parse('@Html.Raw(Json.Serialize(Model))');
+            model.link.probability = newProb;
+            $.post({
+                url: '/link/post',
+                data: JSON.stringify(model),
                 success: appendAlert,
                 contentType: 'application/json'
-            }
-        );
-    });
-    $("#downvote-btn").click(function () {
-        $.post(
-            {
-                url: '/home/vote',
-                data: '@Html.Raw(Json.Serialize(new VoteModel { VoteType = VoteType.Downvote, Link = Model.Link, ConfigName = Model.ConfigName}))',
+            });
+        });
+        $("#downvote-btn").click(function () {
+            var prob = parseInt(probabilityElement.value);
+            var newProb = prob - 1;
+            probabilityElement.value = newProb;
+            var model = JSON.parse('@Html.Raw(Json.Serialize(Model))');
+            model.link.probability = newProb;
+            $.post({
+                url: '/link/post',
+                data: JSON.stringify(model),
                 success: appendAlert,
                 contentType: 'application/json'
-            }
-        );
-    });
+            });
+        });
     </script>
 }
