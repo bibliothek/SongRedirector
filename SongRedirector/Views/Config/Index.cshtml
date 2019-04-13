@@ -26,7 +26,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Links) {
+@foreach (var item in Model.Links.OrderBy(x=>x.Link.Id)) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Link.DisplayName)
