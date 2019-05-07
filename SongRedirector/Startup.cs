@@ -46,7 +46,7 @@ namespace SongRedirector
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{config=default}/{id?}");
+                    template: "{controller=Home}/{action=Embed}/{config=default}/{id?}");
             });
         }
     }
