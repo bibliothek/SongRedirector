@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 
 namespace SongRedirector.Repository
 {
@@ -26,12 +27,28 @@ namespace SongRedirector.Repository
             Probability = probability;
         }
 
-        public string GetYouTubeEmbedCode()
-        {
-            var regex = @".*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*";
-            var match = System.Text.RegularExpressions.Regex.Match(Uri, regex);
-            var group = match.Groups[1];
+        private Match youtubeLinkMatches = null;
+        private Match YoutubeLinkMatches {
+            get {
+                if (youtubeLinkMatches == null) {
+                    var regex = @".*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*)(?:(\?t|&start)=(\d+))?.*";
+                    youtubeLinkMatches = Regex.Match(Uri, regex);
+                }
+                return youtubeLinkMatches;
+            }
+        }
+
+        private string GetMatchGroup(int groupIndex) {
+            var group = YoutubeLinkMatches.Groups[groupIndex];
             return group.Success ? group.Value : null;
+        }
+
+        public string GetYouTubeEmbedCode() {
+            return GetMatchGroup(2);
+        }
+
+        public string GetYouTubeStartTime() {
+            return "start=" + GetMatchGroup(4);
         }
     }
 }
