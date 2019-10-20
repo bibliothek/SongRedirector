@@ -22,16 +22,17 @@ namespace SongRedirector.Repository
         public ILinkConfig GetConfig(string configName)
         {
             ILinkConfig config;
+            string configNameLowerCase = configName.ToLowerInvariant();
 
-            if (cachedConfigs.TryGetValue(configName, out config))
+            if (cachedConfigs.TryGetValue(configNameLowerCase, out config))
             {
                 return config;
             }
 
-            using (Stream resource = GetFileStream(configName))
+            using (Stream resource = GetFileStream(configNameLowerCase))
             {
-                config = GetConfig(resource, configName);
-                cachedConfigs[configName] = config;
+                config = GetConfig(resource, configNameLowerCase);
+                cachedConfigs[configNameLowerCase] = config;
                 return config;
             }
         }
