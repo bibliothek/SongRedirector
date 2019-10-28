@@ -8,7 +8,7 @@ namespace SongRedirector.Models
 {
     public class LinkModel : SharedLayoutModel
     {
-        public LinkModel(string configName, Link link, IList<string> configNames) : base(configNames)
+        public LinkModel(string configName, Link link)
         {
             ConfigName = configName;
             Link = link;

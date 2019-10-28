@@ -34,18 +34,20 @@
                         </li>
                     </ul>
                 </div>
-                <div class="dropdown show">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @ViewContext.RouteData.Values["config"]
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        @foreach (var configName in Model.ConfigNames)
-                        {
-                            <a class="dropdown-item" href=@string.Concat("/Home/Embed/", configName)>@configName</a>
-                        }
+                @if (Model.ConfigNames != null)
+                {
+                    <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @ViewContext.RouteData.Values["config"]
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            @foreach (var configName in Model.ConfigNames)
+                            {
+                                <a class="dropdown-item" href=@string.Concat("/",ViewContext.RouteData.Values["controller"], "/", ViewContext.RouteData.Values["action"], "/", configName)>@configName</a>
+                            }
+                        </div>
                     </div>
-                </div>
-                
+                }
             </div>
         </nav>
     </header>

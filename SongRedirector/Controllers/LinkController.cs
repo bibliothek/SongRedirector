@@ -27,7 +27,7 @@ namespace SongRedirector.Controllers
         public IActionResult Edit([FromRoute]string config, [FromRoute]int id)
         {
             var link = linkRepository.GetLink(config, id);
-            return View(new LinkModel(config, link, linkRepository.GetConfigNames()));
+            return View(new LinkModel(config, link));
         }
 
         public IActionResult Upvote([FromRoute]string config, [FromRoute]int id)

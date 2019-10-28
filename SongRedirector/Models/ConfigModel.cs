@@ -12,7 +12,7 @@ namespace SongRedirector.Models
         public ConfigModel(ILinkConfig linkConfig, IList<string> configNames) : base(configNames)
         {
             Config = linkConfig;
-            Links = Config.Links.Select(x => new LinkModel(Name, x, configNames)).ToList();
+            Links = Config.Links.Select(x => new LinkModel(Name, x)).ToList();
         }
 
         public string Name => Config.Name;
