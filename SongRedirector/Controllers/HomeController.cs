@@ -38,7 +38,7 @@ namespace SongRedirector.Controllers
             {
                 return Redirect(link.Uri);
             }
-            var model = new HomeModel { Link = link, ConfigName = config};
+            var model = new HomeModel(linkRepository.GetConfigNames()) { Link = link, ConfigName = config};
             return View(model);
         }
 
