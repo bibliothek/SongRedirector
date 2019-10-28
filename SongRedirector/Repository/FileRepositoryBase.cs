@@ -83,5 +83,6 @@ namespace SongRedirector.Repository
         }
 
         internal abstract void SaveInternal(string configName, ILinkConfig config);
+        public abstract IList<string> GetConfigNames();
     }
 }

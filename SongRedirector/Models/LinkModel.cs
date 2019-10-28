@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SongRedirector.Models
 {
-    public class LinkModel
+    public class LinkModel : SharedLayoutModel
     {
-        public LinkModel(string configName, Link link)
+        public LinkModel(string configName, Link link, IList<string> configNames) : base(configNames)
         {
             ConfigName = configName;
             Link = link;

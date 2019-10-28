@@ -21,7 +21,7 @@ namespace SongRedirector.Controllers
         public IActionResult Index([FromRoute]string config)
         {
             var conf = linkRepository.GetConfig(config);
-            return View(new ConfigModel(conf));
+            return View(new ConfigModel(conf, linkRepository.GetConfigNames()));
         }
 
     }

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SongRedirector.Models
 {
-    public class HomeModel
+    public class HomeModel : SharedLayoutModel
     {
+        public HomeModel(IList<string> configNames) : base(configNames) { }
+
         public Link Link { get; set; }
 
         public string ConfigName { get; set; }
