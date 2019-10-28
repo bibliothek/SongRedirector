@@ -3,8 +3,10 @@ using Microsoft.Extensions.Options;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace SongRedirector.Repository
 {
@@ -13,6 +15,7 @@ namespace SongRedirector.Repository
         private BlobStorageSettings settings;
         private CloudBlobClient client;
         private CloudBlobContainer container;
+        private IList<string> configNames;
 
         public AzureBlobRepository(IOptions<BlobStorageSettings> options)
         {
@@ -69,6 +72,26 @@ namespace SongRedirector.Repository
         internal override void SaveInternal(string configName, ILinkConfig linkConfig)
         {
             Save(configName, linkConfig);
+        }
+
+        public override IList<string> GetConfigNames()
+        {
+            if(configNames != null)
+            {
+                return configNames;
+            }
+            BlobResultSegment segment = container.ListBlobsSegmentedAsync(null).Result;
+            List<IListBlobItem> list = new List<IListBlobItem>();
+            list.AddRange(segment.Results);
+            while (segment.ContinuationToken != null)
+            {
+                segment = container.ListBlobsSegmentedAsync(segment.ContinuationToken).Result;
+                list.AddRange(segment.Results);
+            }
+            const string configNameRegex = @"^.*\/(.+)\.songs$";
+
+            configNames = list.Select(x => Regex.Match(x.Uri.AbsolutePath, configNameRegex).Groups[1].Value).ToList();
+            return configNames;
         }
     }
 }
