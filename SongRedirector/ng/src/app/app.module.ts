@@ -13,6 +13,10 @@ import { MatListModule } from '@angular/material/list';
 import { NavComponent } from './nav/nav.component';
 import { EmbeddedVideoComponent } from './embedded-video/embedded-video.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { LinkEffects } from './link.effects';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,15 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
+    EffectsModule.forRoot([LinkEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
