@@ -48,6 +48,10 @@ export class EmbeddedVideoComponent implements OnInit {
     this.setVideoSize();
   }
 
+  getAnotherLink(): void {
+    this.store.dispatch(fetchLink());
+  }
+
   private setVideoSize(): void {
     this.videoWidth = Math.min(
       this.container.nativeElement.offsetWidth - 1 - 50,
