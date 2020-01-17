@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnChanges, HostListener } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
+import { LinkService, Link } from '../link.service';
 
 @Component({
   selector: 'app-embedded-video',
@@ -15,12 +16,14 @@ export class EmbeddedVideoComponent implements OnInit {
   videoLink: SafeResourceUrl;
   songTitle = 'Song Title'
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer, private linkService: LinkService) {
    }
 
   ngOnInit() {
     this.setVideoSize();
-    this.videoLink = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/a82ZIVHWPpY?rel=0&autoplay=1');
+    this.linkService.getRandomLink().subscribe(link => {
+      this.setVideoLink(link);
+    });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -28,10 +31,17 @@ export class EmbeddedVideoComponent implements OnInit {
     this.setVideoSize();
   }
 
-  private setVideoSize() {
-    // this.videoWidth = Math.min((this.container.nativeElement.offsetWidth - 1), 540);
+  private setVideoSize(): void {
     this.videoWidth = Math.min((this.container.nativeElement.offsetWidth - 1) - 50, 540);
     this.videoHeight = this.videoWidth * (9 / 16);
+  }
+
+  private setVideoLink(link: Link): void {
+    if(!link.youTubeEmbedCode) {
+      window.location.href = link.uri;
+      return;
+    }
+    this.videoLink = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${link.youTubeEmbedCode}?rel=0&autoplay=1&${link.youTubeStartTime}`);
   }
 
 }
