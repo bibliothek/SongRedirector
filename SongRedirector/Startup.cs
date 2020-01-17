@@ -20,9 +20,13 @@ namespace SongRedirector
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.Configure<BlobStorageSettings>(options => Configuration.GetSection("BlobStorageSettings").Bind(options));
-            services.AddSingleton<ILinkRepository, AzureBlobRepository>();
+            //services.AddSingleton<ILinkRepository, AzureBlobRepository>();
+            services.AddSingleton<ILinkRepository, EmbeddedFileRepository>();
             services.AddSingleton<ILinkProvider, RandomLinkProvider>();
         }
 
@@ -41,7 +45,6 @@ namespace SongRedirector
             app.UseStatusCodePages();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
