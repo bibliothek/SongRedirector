@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule} from '@angular/material';
+import { MatButtonModule, MatCardModule, MatSelectModule} from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -31,6 +31,7 @@ import { LinkEffects } from './link.effects';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
+    MatSelectModule,
     LayoutModule,
     HttpClientModule,
     MatToolbarModule,

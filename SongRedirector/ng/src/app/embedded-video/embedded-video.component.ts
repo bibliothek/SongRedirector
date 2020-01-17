@@ -11,7 +11,7 @@ import { MatIconRegistry } from "@angular/material";
 import { LinkService, Link } from "../link.service";
 import { State } from "../reducers";
 import { Store, select } from "@ngrx/store";
-import { fetchData } from "../link.actions";
+import { fetchLink } from "../link.actions";
 
 @Component({
   selector: "app-embedded-video",
@@ -40,7 +40,7 @@ export class EmbeddedVideoComponent implements OnInit {
         this.songTitle = link.currentLink.displayName;
       }
     });
-    this.store.dispatch(fetchData());
+    this.store.dispatch(fetchLink());
   }
 
   @HostListener("window:resize", ["$event"])

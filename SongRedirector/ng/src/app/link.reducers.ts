@@ -10,7 +10,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  selectedConfig: "nexoneers",
+  selectedConfig: "default",
   configs: [],
   currentLink: null,
   configLinks: []

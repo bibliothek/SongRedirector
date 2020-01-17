@@ -5,6 +5,11 @@
       <span style="flex-grow: 1;"></span>
       <span>Home</span>
       <span>Edit</span>
+      <mat-form-field>
+        <mat-select [(value)]="currentConfig" (change)="onSelect($event)" >
+          <mat-option *ngFor="let configName of configNames$ | async" [value]="configName">{{ configName }}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-toolbar>
     <div class="content">
       <router-outlet></router-outlet>
