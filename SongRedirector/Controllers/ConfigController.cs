@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SongRedirector.Models;
 using SongRedirector.Repository;
 
 namespace SongRedirector.Controllers
 {
-    public class ConfigController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ConfigController : ControllerBase
     {
         private readonly ILinkRepository linkRepository;
 
@@ -18,11 +20,21 @@ namespace SongRedirector.Controllers
             this.linkRepository = linkRepository;
         }
 
-        public IActionResult Index([FromRoute]string config)
+        [HttpGet]
+        public IEnumerable<string> GetConfigs()
         {
-            var conf = linkRepository.GetConfig(config);
-            return View(new ConfigModel(conf, linkRepository.GetConfigNames()));
+            return linkRepository.GetConfigNames();
         }
 
+        [HttpGet("{name}")]
+        public Config GetConfig(string name)
+        {
+            var c = linkRepository.GetConfig(name);
+            return new Config
+            {
+                Name = c.Name,
+                Links = c.Links.Select(x => new Models.Link { Url = x.Uri, Name = x.DisplayName, Probability = x.Probability }).ToList()
+            };
+        }
     }
 }

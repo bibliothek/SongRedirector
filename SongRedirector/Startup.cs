@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SongRedirector.Repository;
 using SongRedirector.Services;
+using Microsoft.OpenApi.Models;
 
 namespace SongRedirector
 {
@@ -29,11 +30,11 @@ namespace SongRedirector
             {
                 configuration.RootPath = "ng/dist";
             });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SongRedirector", Version = "v1" });
+            });
 
-            //services.AddMvc(options =>
-            //{
-            //    options.EnableEndpointRouting = false;
-            //}).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.Configure<BlobStorageSettings>(options => Configuration.GetSection("BlobStorageSettings").Bind(options));
             //services.AddSingleton<ILinkRepository, AzureBlobRepository>();
             services.AddSingleton<ILinkRepository, EmbeddedFileRepository>();
@@ -43,6 +44,11 @@ namespace SongRedirector
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SongRedirector V1");
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -82,18 +88,6 @@ namespace SongRedirector
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
-            //else
-            //{
-            //    app.UseExceptionHandler("/Home/Error");
-            //}
-
-            //app.UseStatusCodePages();
-            //app.UseHttpsRedirection();
-            //app.UseStaticFiles();
             //app.UseMvc(routes =>
             //{
             //    routes.MapRoute(
