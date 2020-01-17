@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using SongRedirector.Repository;
 using SongRedirector.Services;
 
@@ -20,10 +22,18 @@ namespace SongRedirector
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options =>
+
+            services.AddControllersWithViews();
+            // In production, the Angular files will be served from this directory
+            services.AddSpaStaticFiles(configuration =>
             {
-                options.EnableEndpointRouting = false;
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+                configuration.RootPath = "ng/dist";
+            });
+
+            //services.AddMvc(options =>
+            //{
+            //    options.EnableEndpointRouting = false;
+            //}).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.Configure<BlobStorageSettings>(options => Configuration.GetSection("BlobStorageSettings").Bind(options));
             //services.AddSingleton<ILinkRepository, AzureBlobRepository>();
             services.AddSingleton<ILinkRepository, EmbeddedFileRepository>();
@@ -31,7 +41,7 @@ namespace SongRedirector
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -39,18 +49,57 @@ namespace SongRedirector
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
             }
 
-            app.UseStatusCodePages();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseMvc(routes =>
+            if (!env.IsDevelopment())
             {
-                routes.MapRoute(
+                app.UseSpaStaticFiles();
+            }
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Embed}/{config=default}/{id?}");
+                    pattern: "{controller}/{action=Index}/{id?}");
             });
+
+            app.UseSpa(spa =>
+            {
+                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                // see https://go.microsoft.com/fwlink/?linkid=864501
+
+                spa.Options.SourcePath = "ng";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
+            });
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/Home/Error");
+            //}
+
+            //app.UseStatusCodePages();
+            //app.UseHttpsRedirection();
+            //app.UseStaticFiles();
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Embed}/{config=default}/{id?}");
+            //});
         }
     }
 }

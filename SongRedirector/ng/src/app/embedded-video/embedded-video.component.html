@@ -1,0 +1,17 @@
+<div class="container" #container>
+  <!-- <iframe [width]="this.videoWidth" [height]="this.videoHeight" [src]="this.videoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{songTitle}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <iframe [width]="this.videoWidth" [height]="this.videoHeight" [src]="this.videoLink" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button><i class="material-icons">thumb_up</i></button>
+      <button mat-button><i class="material-icons">thumb_down</i></button>
+    </mat-card-actions>
+  </mat-card>
+</div>
