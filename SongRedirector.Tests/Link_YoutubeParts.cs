@@ -1,3 +1,4 @@
+using SongRedirector.Models;
 using SongRedirector.Repository;
 using System;
 using Xunit;
@@ -9,7 +10,7 @@ namespace SongRedirector.Tests
         [Fact]
         public void Link_FullLink_EmbedCodeCanBeExtracted() {
             Link l = new Link(1, "name", "https://www.youtube.com/watch?v=X2W3aG8uizA");
-            var embedCode = l.GetYouTubeEmbedCode();
+            var embedCode = l.YouTubeEmbedCode;
 
             Assert.Equal("X2W3aG8uizA", embedCode);
         }
@@ -17,7 +18,7 @@ namespace SongRedirector.Tests
         [Fact]
         public void Link_FullLinkWithStart_EmbedCodeCanBeExtracted() {
             Link l = new Link(1, "name", "https://www.youtube.com/watch?v=X2W3aG8uizA&start=20");
-            var embedCode = l.GetYouTubeEmbedCode();
+            var embedCode = l.YouTubeEmbedCode;
 
             Assert.Equal("X2W3aG8uizA", embedCode);
         }
@@ -25,7 +26,7 @@ namespace SongRedirector.Tests
         [Fact]
         public void Link_ShortLink_EmbedCodeCanBeExtracted() {
             Link l = new Link(1, "name", "https://youtu.be/Rbo9VslSGuU");
-            var embedCode = l.GetYouTubeEmbedCode();
+            var embedCode = l.YouTubeEmbedCode;
 
             Assert.Equal("Rbo9VslSGuU", embedCode);
         }
@@ -33,7 +34,7 @@ namespace SongRedirector.Tests
         [Fact]
         public void Link_ShortLinkWithStart_EmbedCodeCanBeExtracted() {
             Link l = new Link(1, "name", "https://youtu.be/uHFJ9qhR0VM?t=50");
-            var embedCode = l.GetYouTubeEmbedCode();
+            var embedCode = l.YouTubeEmbedCode;
 
             Assert.Equal("uHFJ9qhR0VM", embedCode);
         }
@@ -41,7 +42,7 @@ namespace SongRedirector.Tests
         [Fact]
         public void Link_FullLinkNoStart_StartCannotBeExtracted() {
             Link l = new Link(1, "name", "https://www.youtube.com/watch?v=X2W3aG8uizA");
-            var start = l.GetYouTubeStartTime();
+            var start = l.YouTubeStartTime;
 
             Assert.Equal("start=", start);
         }
@@ -49,7 +50,7 @@ namespace SongRedirector.Tests
         [Fact]
         public void Link_FullLinkWithStart_StartCanBeExtracted() {
             Link l = new Link(1, "name", "https://www.youtube.com/watch?v=X2W3aG8uizA&start=20");
-            var start = l.GetYouTubeStartTime();
+            var start = l.YouTubeStartTime;
 
             Assert.Equal("start=20", start);
         }
@@ -57,7 +58,7 @@ namespace SongRedirector.Tests
         [Fact]
         public void Link_ShortLinkNoStart_StartCannotBeExtracted() {
             Link l = new Link(1, "name", "https://youtu.be/Rbo9VslSGuU");
-            var start = l.GetYouTubeStartTime();
+            var start = l.YouTubeStartTime;
 
             Assert.Equal("start=", start);
         }
@@ -65,7 +66,7 @@ namespace SongRedirector.Tests
         [Fact]
         public void Link_ShortLinkWithStart_StartCanBeExtracted() {
             Link l = new Link(1, "name", "https://youtu.be/uHFJ9qhR0VM?t=50");
-            var start = l.GetYouTubeStartTime();
+            var start = l.YouTubeStartTime;
 
             Assert.Equal("start=50", start);
         }

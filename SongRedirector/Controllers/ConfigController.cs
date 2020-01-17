@@ -9,7 +9,7 @@ using SongRedirector.Repository;
 
 namespace SongRedirector.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/config")]
     [ApiController]
     public class ConfigController : ControllerBase
     {
@@ -33,7 +33,7 @@ namespace SongRedirector.Controllers
             return new Config
             {
                 Name = c.Name,
-                Links = c.Links.Select(x => new Models.Link { Url = x.Uri, Name = x.DisplayName, Probability = x.Probability }).ToList()
+                Links = c.Links
             };
         }
     }

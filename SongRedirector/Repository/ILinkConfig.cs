@@ -1,4 +1,5 @@
-﻿using SongRedirector.Services;
+﻿using SongRedirector.Models;
+using SongRedirector.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

@@ -1,17 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 
 namespace SongRedirector.Models
 {
     public class Link
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
 
-        public string Url { get; set; }
+        public string DisplayName { get; set; }
+
+        public string Uri { get; set; }
 
         public int Probability { get; set; }
 
+        public Link()
+        {
+
+        }
+        public Link(int id, string displayName, string uri, int probability = 1)
+        {
+            Id = id;
+            DisplayName = displayName;
+            Uri = uri;
+            Probability = probability;
+        }
+
+        private Match youtubeLinkMatches = null;
+        private Match YoutubeLinkMatches
+        {
+            get
+            {
+                if (youtubeLinkMatches == null)
+                {
+                    var regex = @".*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*)(?:(\?t|&start)=(\d+))?.*";
+                    youtubeLinkMatches = Regex.Match(Uri, regex);
+                }
+                return youtubeLinkMatches;
+            }
+        }
+
+        private string GetMatchGroup(int groupIndex)
+        {
+            var group = YoutubeLinkMatches.Groups[groupIndex];
+            return group.Success ? group.Value : null;
+        }
+
+        public string YouTubeEmbedCode => GetMatchGroup(2);
+
+        public string YouTubeStartTime => "start=" + GetMatchGroup(4);
     }
 }

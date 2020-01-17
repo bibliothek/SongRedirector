@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SongRedirector.Models;
+using System.Collections.Generic;
 
 namespace SongRedirector.Repository
 {

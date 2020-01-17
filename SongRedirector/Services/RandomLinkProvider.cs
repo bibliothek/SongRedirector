@@ -1,3 +1,4 @@
+using SongRedirector.Models;
 using SongRedirector.Repository;
 using System;
 namespace SongRedirector.Services
