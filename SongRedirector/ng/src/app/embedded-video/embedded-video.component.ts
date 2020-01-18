@@ -24,7 +24,7 @@ export class EmbeddedVideoComponent implements OnInit {
   videoWidth = 0;
   videoHeight = 0;
   videoLink: SafeResourceUrl;
-  songTitle = "Song Title";
+  link: Link;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -36,8 +36,8 @@ export class EmbeddedVideoComponent implements OnInit {
     this.setVideoSize();
     this.store.pipe(select("link")).subscribe(link => {
       if (link && link.currentLink) {
+        this.link = link.currentLink;
         this.setVideoLink(link.currentLink);
-        this.songTitle = link.currentLink.displayName;
       }
     });
     this.store.dispatch(fetchLink());
