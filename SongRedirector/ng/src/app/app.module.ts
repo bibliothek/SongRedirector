@@ -17,12 +17,14 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { LinkEffects } from './link.effects';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     EmbeddedVideoComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,
