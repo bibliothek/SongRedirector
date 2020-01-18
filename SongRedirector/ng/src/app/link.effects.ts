@@ -6,11 +6,13 @@ import {
   setLink,
   fetchConfigNames,
   setConfigNames,
-  selectConfig
+  selectConfig,
+  upvote,
+  downvote
 } from "./link.actions";
 import { switchMap, map, withLatestFrom, concatMap } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
-import { Link } from "./link.service";
+import { Link } from "./link.model";
 import { State } from "./reducers";
 import { Store, select } from "@ngrx/store";
 
@@ -45,6 +47,30 @@ export class LinkEffects {
         return setConfigNames({ configNames });
       })
     )
+  );
+
+  upvoteLink$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(upvote),
+      concatMap(action =>
+        of(action).pipe(withLatestFrom(this.store.pipe(select("link"))))
+      ),
+      switchMap(([_, link]) => {
+        return this.httpClient.post(`${this.endpoint}/${link.selectedConfig}/link/${link.currentLink.id}/upvote`, {});
+      })
+    ), {dispatch: false}
+  );
+
+  downvoteLink$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(downvote),
+      concatMap(action =>
+        of(action).pipe(withLatestFrom(this.store.pipe(select("link"))))
+      ),
+      switchMap(([_, link]) => {
+        return this.httpClient.post(`${this.endpoint}/${link.selectedConfig}/link/${link.currentLink.id}/downvote`, {});
+      })
+    ), {dispatch: false}
   );
 
   selectConfig$ = createEffect(() =>

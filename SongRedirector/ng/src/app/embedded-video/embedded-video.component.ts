@@ -7,11 +7,11 @@ import {
   HostListener
 } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
-import { MatIconRegistry } from "@angular/material";
-import { LinkService, Link } from "../link.service";
+import { Link } from "../link.model";
 import { State } from "../reducers";
 import { Store, select } from "@ngrx/store";
-import { fetchLink } from "../link.actions";
+import { fetchLink, downvote, upvote } from "../link.actions";
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: "app-embedded-video",
@@ -28,16 +28,17 @@ export class EmbeddedVideoComponent implements OnInit {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private linkService: LinkService,
     private store: Store<State>
   ) {}
 
   ngOnInit() {
     this.setVideoSize();
     this.store.pipe(select("link")).subscribe(link => {
-      if (link && link.currentLink) {
+      if (link) {
         this.link = link.currentLink;
-        this.setVideoLink(link.currentLink);
+        if(link.newLink){
+          this.setVideoLink(link.currentLink);
+        }
       }
     });
     this.store.dispatch(fetchLink());
@@ -50,6 +51,14 @@ export class EmbeddedVideoComponent implements OnInit {
 
   getAnotherLink(): void {
     this.store.dispatch(fetchLink());
+  }
+
+  upvote(): void {
+    this.store.dispatch(upvote());
+  }
+
+  downvote(): void {
+    this.store.dispatch(downvote());
   }
 
   private setVideoSize(): void {

@@ -35,14 +35,14 @@ namespace SongRedirector.Controllers
             return linkRepository.GetLink(config, id);
         }
 
-        [HttpPost("{id}/up")]
+        [HttpPost("{id}/upvote")]
         public OkResult Upvote(string config, int id)
         {
             linkRepository.ChangeProbability(config, id, 1);
             return Ok();
         }
 
-        [HttpPost("{id}/down")]
+        [HttpPost("{id}/downvote")]
         public OkResult Downvote(string config, int id)
         {
             linkRepository.ChangeProbability(config, id, -1);
