@@ -18,6 +18,9 @@ import { reducers, metaReducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { LinkEffects } from './link.effects';
 import { EditComponent } from './edit/edit.component';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -48,9 +51,11 @@ import { EditComponent } from './edit/edit.component';
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true
-      }
+      },
     }),
-    EffectsModule.forRoot([LinkEffects])
+    EffectsModule.forRoot([LinkEffects]),
+    StoreRouterConnectingModule.forRoot(),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

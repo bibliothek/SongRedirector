@@ -3,7 +3,6 @@ import { Action, createReducer, on } from "@ngrx/store";
 import * as LinkActions from "./link.actions";
 
 export interface State {
-  selectedConfig: string;
   configs: string[];
   currentLink: Link;
   configLinks: Link[];
@@ -11,7 +10,6 @@ export interface State {
 }
 
 export const initialState: State = {
-  selectedConfig: "default",
   configs: [],
   currentLink: null,
   configLinks: [],
@@ -21,7 +19,6 @@ export const initialState: State = {
 export function linkReducer(linkState: State | undefined, linkAction: Action) {
   return createReducer(
     initialState,
-    on(LinkActions.selectConfig, (state, action) => { return { ...state, selectedConfig: action.name, newLink: false };}),
     on(LinkActions.setConfigNames, (state, action) => { return { ...state, configs: action.configNames, newLink: false };}),
     on(LinkActions.setConfigLinks, (state, action) => { return { ...state, configLinks: action.configLinks, newLink: false };}),
     on(LinkActions.setLink, (state, action) => { return { ...state, currentLink: action.link, newLink: true };}),

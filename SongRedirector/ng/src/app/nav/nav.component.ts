@@ -3,12 +3,13 @@ import { State } from "../reducers";
 import { Store, select } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { map, shareReplay } from "rxjs/operators";
-import { fetchConfigNames, selectConfig } from "../link.actions";
+import { fetchConfigNames } from "../link.actions";
 import {
   Breakpoints,
   BreakpointObserver,
   MediaMatcher
 } from "@angular/cdk/layout";
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-nav",
@@ -27,8 +28,7 @@ export class NavComponent implements OnInit, OnDestroy {
     );
     this.store
       .pipe(
-        select("link"),
-        map(link => link.selectedConfig)
+        select('router', 'state', 'root', 'firstChild', 'params', 'config'),
       )
       .subscribe(config => (this._currentConfig = config));
     this.store.dispatch(fetchConfigNames());
@@ -42,7 +42,7 @@ export class NavComponent implements OnInit, OnDestroy {
     if (value === this._currentConfig) {
       return;
     }
-    this.store.dispatch(selectConfig({ name: value }));
+    this.router.navigate( [this.router.url.substring(0, this.router.url.lastIndexOf('/')) , value]);
   }
 
   mobileQuery: MediaQueryList;
@@ -52,7 +52,9 @@ export class NavComponent implements OnInit, OnDestroy {
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    private store: Store<State>
+    private store: Store<State>,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.mobileQuery = media.matchMedia("(max-width: 600px)");
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();

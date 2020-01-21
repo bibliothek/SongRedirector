@@ -3,7 +3,6 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  OnChanges,
   HostListener
 } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
@@ -11,7 +10,7 @@ import { Link } from "../link.model";
 import { State } from "../reducers";
 import { Store, select } from "@ngrx/store";
 import { fetchLink, downvote, upvote } from "../link.actions";
-import { take } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-embedded-video",
@@ -28,10 +27,12 @@ export class EmbeddedVideoComponent implements OnInit {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private store: Store<State>
+    private store: Store<State>,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.route.params.subscribe(() =>this.store.dispatch(fetchLink()));
     this.setVideoSize();
     this.store.pipe(select("link")).subscribe(link => {
       if (link) {
@@ -41,7 +42,6 @@ export class EmbeddedVideoComponent implements OnInit {
         }
       }
     });
-    this.store.dispatch(fetchLink());
   }
 
   @HostListener("window:resize", ["$event"])
