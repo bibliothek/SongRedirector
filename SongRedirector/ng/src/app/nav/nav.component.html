@@ -11,8 +11,8 @@
       fixedTopGap="56" [opened]="!mobileQuery.matches">
       <div class="inner-sidenav">
         <mat-nav-list>
-          <a mat-list-item [routerLink]="['/']" routerLinkActive="router-link-active">Home</a>
-          <a mat-list-item [routerLink]="['/edit']" routerLinkActive="router-link-active">Edit</a>
+          <a mat-list-item [routerLink]="['/Home/Embed', currentConfig]" routerLinkActive="router-link-active">Home</a>
+          <a mat-list-item [routerLink]="['/Config/Index', currentConfig]" routerLinkActive="router-link-active">Edit</a>
         </mat-nav-list>
         <div style="flex: 1;"></div>
         <mat-form-field style="padding: 0 16px;">
