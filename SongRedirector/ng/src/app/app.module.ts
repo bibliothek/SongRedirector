@@ -21,6 +21,7 @@ import { EditComponent } from './edit/edit.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { RedirectComponent } from './redirect/redirect.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { environment } from '../environments/environment';
     NavComponent,
     EmbeddedVideoComponent,
     EditComponent,
+    RedirectComponent,
   ],
   imports: [
     BrowserModule,

@@ -32,7 +32,6 @@ export class EmbeddedVideoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe(() =>this.store.dispatch(fetchLink()));
     this.setVideoSize();
     this.store.pipe(select("link")).subscribe(link => {
       if (link) {
@@ -42,6 +41,7 @@ export class EmbeddedVideoComponent implements OnInit {
         }
       }
     });
+    this.route.params.subscribe(() =>this.store.dispatch(fetchLink()));
   }
 
   @HostListener("window:resize", ["$event"])
