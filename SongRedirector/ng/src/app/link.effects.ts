@@ -7,11 +7,13 @@ import {
   fetchConfigNames,
   setConfigNames,
   upvote,
-  downvote
+  downvote,
+  fetchConfig,
+  setConfigLinks
 } from "./link.actions";
-import { switchMap, map, withLatestFrom, concatMap, tap } from "rxjs/operators";
+import { switchMap, map, withLatestFrom, concatMap, tap, take } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
-import { Link } from "./link.model";
+import { Link, Config } from "./link.model";
 import { State } from "./reducers";
 import { Store, select } from "@ngrx/store";
 
@@ -22,8 +24,8 @@ export class LinkEffects {
   fetchLink$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fetchLink),
-      concatMap(action => of(action).pipe(withLatestFrom(this.store.select('router', 'state', 'root', 'firstChild', 'params', 'config')))),
-      switchMap(([_, config]) => {
+      switchMap(_ => this.store.select('router', 'state', 'root', 'firstChild', 'params', 'config').pipe(take(1))),
+      switchMap((config) => {
         return this.httpClient.get<Link>(
           `${this.endpoint}/${config}/link`
         );
@@ -44,14 +46,25 @@ export class LinkEffects {
     )
   );
 
+  fetchConfig$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fetchConfig),
+      switchMap(_ => this.store.select('router', 'state', 'root', 'firstChild', 'params', 'config').pipe(take(1))),
+      switchMap((config) => {
+        return this.httpClient.get<Config>(
+          `${this.endpoint}/${config}`
+        );
+      }),
+      map(config => setConfigLinks({ configLinks: config.links })
+    )
+    )
+    );
+
   upvoteLink$ = createEffect(() =>
     this.actions$.pipe(
       ofType(upvote),
-      concatMap(action =>
-        of(action).pipe(withLatestFrom(this.store.pipe(select("link"))))
-      ),
-      concatMap(([_, link]) => 
-        of(link).pipe(withLatestFrom(this.store.select('router', 'state', 'root', 'firstChild', 'params', 'config')))
+      switchMap(_ => 
+        this.store.pipe(select("link"), take(1), withLatestFrom(this.store.select('router', 'state', 'root', 'firstChild', 'params', 'config')))
       ),
       switchMap(([link, config,]) => {
         return this.httpClient.post(`${this.endpoint}/${config}/link/${link.currentLink.id}/upvote`, {});
@@ -62,11 +75,8 @@ export class LinkEffects {
   downvoteLink$ = createEffect(() =>
     this.actions$.pipe(
       ofType(downvote),
-      concatMap(action =>
-        of(action).pipe(withLatestFrom(this.store.pipe(select("link"))))
-      ),
-      concatMap(([_, link]) => 
-        of(link).pipe(withLatestFrom(this.store.select('router', 'state', 'root', 'firstChild', 'params', 'config')))
+      switchMap(_ =>
+        this.store.pipe(select("link"), take(1), withLatestFrom(this.store.select('router', 'state', 'root', 'firstChild', 'params', 'config')))
       ),
       switchMap(([link, config]) => {
         return this.httpClient.post(`${this.endpoint}/${config}/link/${link.currentLink.id}/downvote`, {});
@@ -74,14 +84,7 @@ export class LinkEffects {
     ), {dispatch: false}
   );
 
-  // selectConfig$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(selectConfig),
-  //     map(_ => {
-  //       return fetchLink();
-  //     })
-  //   )
-  // );
+  
 
   constructor(
     private actions$: Actions,
