@@ -17,19 +17,21 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { LinkEffects } from './link.effects';
-import { EditComponent } from './edit/edit.component';
+import { LinkListComponent } from './edit/link-list/link-list.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { RedirectComponent } from './redirect/redirect.component';
+import { LinkEditComponent } from './edit/link-edit/link-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     EmbeddedVideoComponent,
-    EditComponent,
+    LinkListComponent,
     RedirectComponent,
+    LinkEditComponent,
   ],
   imports: [
     BrowserModule,

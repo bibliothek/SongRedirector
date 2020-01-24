@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { State } from '../reducers';
+import { State } from '../../reducers';
 import { ActivatedRoute } from '@angular/router';
-import { Link } from '../link.model';
-import { fetchConfig } from '../link.actions';
+import { Link } from '../../link.model';
+import { fetchConfig } from '../../link.actions';
 
 @Component({
-  selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+  selector: 'app-link-list',
+  templateUrl: './link-list.component.html',
+  styleUrls: ['./link-list.component.scss']
 })
-export class EditComponent implements OnInit {
+export class LinkListComponent implements OnInit {
 
   links: Link[] = [];
 
