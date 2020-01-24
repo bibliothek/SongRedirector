@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { Link } from './link.model';
 
 export const fetchLink = createAction('[Link] Fetch Link');
+export const getLink = createAction('[Link] Get Link');
 export const fetchConfig = createAction('[Link] Fetch Config');
 export const upvote = createAction('[Link] Upvote');
 export const downvote = createAction('[Link] Downvote');

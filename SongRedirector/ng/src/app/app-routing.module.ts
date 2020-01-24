@@ -3,13 +3,18 @@ import { Routes, RouterModule } from '@angular/router';
 import { EmbeddedVideoComponent } from './embedded-video/embedded-video.component';
 import { LinkListComponent } from './edit/link-list/link-list.component';
 import { RedirectComponent } from './redirect/redirect.component';
+import { LinkEditComponent } from './edit/link-edit/link-edit.component';
 
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'Home/Embed/default'},
-  {path: 'Home/Embed/:config', component: EmbeddedVideoComponent},
-  {path: 'Home/Index/:config', component: RedirectComponent},
-  {path: 'Config/Index/:config', component: LinkListComponent},
+  {path: ':config', component: EmbeddedVideoComponent},
+  {path: 'Home/Embed/:config', redirectTo: ':config'},
+  {path: ':config/redirect', component: RedirectComponent},
+  {path: 'Home/Index/:config', redirectTo: ':config/redirect'},
+  {path: ':config/edit/:id', component: LinkEditComponent},
+  {path: ':config/edit', component: LinkListComponent},
+  {path: 'Config/Index/:config', redirectTo: ':config/edit'},
+  {path: '**', redirectTo: 'default'},
 ];
 
 @NgModule({

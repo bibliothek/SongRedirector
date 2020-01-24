@@ -42,7 +42,12 @@ export class NavComponent implements OnInit, OnDestroy {
     if (value === this._currentConfig) {
       return;
     }
-    this.router.navigate( [this.router.url.substring(0, this.router.url.lastIndexOf('/')) , value]);
+    const isEditPage = this.router.url.match('.+\/edit.*');
+    if(isEditPage) {
+      this.router.navigate([value, 'edit']);
+    } else {
+      this.router.navigate([value]);
+    }
   }
 
   mobileQuery: MediaQueryList;
