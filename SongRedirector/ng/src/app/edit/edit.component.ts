@@ -13,6 +13,9 @@ import { fetchConfig } from '../link.actions';
 export class EditComponent implements OnInit {
 
   links: Link[] = [];
+
+  displayedColumns: string[] = ['displayName', 'uri', 'probability'];
+
   constructor(private store: Store<State>, private route: ActivatedRoute) { }
 
   ngOnInit() {
