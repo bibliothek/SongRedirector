@@ -44,7 +44,7 @@ export class EmbeddedVideoComponent implements OnInit {
     this.route.params.subscribe(() =>this.store.dispatch(fetchLink()));
   }
 
-  @HostListener("window:resize", ["$event"])
+  @HostListener("window:resize")
   onResize() {
     this.setVideoSize();
   }
