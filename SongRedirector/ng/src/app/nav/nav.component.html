@@ -17,7 +17,7 @@
         <div style="flex: 1;"></div>
         <mat-form-field style="padding: 0 16px;">
           <mat-label>Config</mat-label>
-            <mat-select [(value)]="currentConfig" (change)="onSelect($event)">
+            <mat-select [(value)]="currentConfig">
               <mat-option *ngFor="let configName of configNames$ | async" [value]="configName">{{ configName }}</mat-option>
             </mat-select>
         </mat-form-field>
