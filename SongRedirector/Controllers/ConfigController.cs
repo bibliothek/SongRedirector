@@ -33,7 +33,7 @@ namespace SongRedirector.Controllers
             return new Config
             {
                 Name = c.Name,
-                Links = c.Links
+                Links = c.Links.Select(x=>new Link(x))
             };
         }
     }

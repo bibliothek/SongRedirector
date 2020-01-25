@@ -10,7 +10,8 @@ import {
   downvote,
   fetchConfig,
   setConfigLinks,
-  getLink
+  getLink,
+  deleteLink
 } from "./link.actions";
 import {
   switchMap,
@@ -149,6 +150,26 @@ export class LinkEffects {
       })
     )
   );
+
+  deleteLink$ = createEffect(() =>
+  this.actions$.pipe(
+      ofType(deleteLink),
+      concatMap(action => {
+        return of(action).pipe(withLatestFrom(this.store.select(
+          "router",
+          "state",
+          "root",
+          "firstChild",
+          "params",
+          "config"
+        )))
+      }
+      ),
+      switchMap(([action, config]) => {
+        return this.httpClient.delete(`${this.endpoint}/${config}/link/${action.id}`);
+      }
+      )
+  ), {dispatch: false});
 
   constructor(
     private actions$: Actions,

@@ -30,31 +30,6 @@ export class LinkEditComponent implements OnInit {
         this.link = linkState.currentLink;
       }
     });
-
-    // this.store.select('link').pipe(withLatestFrom(this.route.queryParams)).subscribe(([linkState, params]) => {
-    //   this.update(linkState, params);
-    // });
-
-    // this.route.queryParams
-    //   .pipe(withLatestFrom(this.store.select("link")))
-    //   .subscribe(([params, linkState]) => this.update(linkState, params));
-
-    // this.route.params.subscribe(params => {
-    //   return this.store.dispatch(fetchConfig());
-    // });
     this.route.params.subscribe(params => this.store.dispatch(getLink()));
-  }
-
-  private update(linkState: fromLinks.State, params: Params): void {
-    if (linkState) {
-      console.log(linkState);
-      console.log(params["id"]);
-      const linkInConfig = linkState.configLinks.find(
-        x => x.id === params["id"]
-      );
-      if (linkInConfig) {
-        this.link = linkInConfig;
-      }
-    }
   }
 }

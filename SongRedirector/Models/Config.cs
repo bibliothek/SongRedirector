@@ -9,6 +9,6 @@ namespace SongRedirector.Models
     {
         public string Name { get; set; }
 
-        public Link[] Links { get; set; }
+        public IEnumerable<Link> Links { get; set; }
     }
 }

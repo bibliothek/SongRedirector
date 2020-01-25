@@ -8,25 +8,25 @@ namespace SongRedirector.Repository
     public class LinkConfig : ILinkConfig
     {
 
-        public LinkConfig(Link[] links, string name)
+        public LinkConfig(LinkEntity[] links, string name)
         {
             Links = links;
             Name = name;
             WeightedLinks = GenerateWeightedLinks(links).ToArray();
         }
 
-        public Link[] Links { get; private set; }
+        public LinkEntity[] Links { get; private set; }
         public string Name { get; }
-        public Link[] WeightedLinks { get; private set; }
+        public LinkEntity[] WeightedLinks { get; private set; }
 
         public int GetNewId()
         {
             return Links.Max(x=>x.Id) + 1;
         }
 
-        private List<Link> GenerateWeightedLinks(Link[] links)
+        private List<LinkEntity> GenerateWeightedLinks(LinkEntity[] links)
         {
-            var weightedLinks = new List<Link>();
+            var weightedLinks = new List<LinkEntity>();
 
             foreach (var link in links)
                 for (var i = 0; i < link.Probability; i++)

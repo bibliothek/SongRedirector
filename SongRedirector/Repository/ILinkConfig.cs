@@ -8,11 +8,11 @@ namespace SongRedirector.Repository
 {
     public interface ILinkConfig
     {
-        Link[] Links { get; }
+        LinkEntity[] Links { get; }
 
         string Name { get; }
 
-        Link[] WeightedLinks { get; }
+        LinkEntity[] WeightedLinks { get; }
 
         int GetNewId();
     }

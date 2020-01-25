@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { State } from '../../reducers';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Link } from '../../link.model';
-import { fetchConfig } from '../../link.actions';
+import { fetchConfig, deleteLink } from '../../link.actions';
 
 @Component({
   selector: 'app-link-list',
@@ -14,9 +14,9 @@ export class LinkListComponent implements OnInit {
 
   links: Link[] = [];
 
-  displayedColumns: string[] = ['displayName', 'uri', 'probability'];
+  displayedColumns: string[] = ['displayName', 'uri', 'probability', 'actions'];
 
-  constructor(private store: Store<State>, private route: ActivatedRoute) { }
+  constructor(private store: Store<State>, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
@@ -26,6 +26,14 @@ export class LinkListComponent implements OnInit {
       }
     });
     this.route.params.subscribe(() => this.store.dispatch(fetchConfig()));
+  }
+
+  delete(id: number) {
+    this.store.dispatch(deleteLink({id}));
+  }
+
+  edit(id: number) {
+    this.router.navigate([id], {relativeTo: this.route});
   }
 
 }

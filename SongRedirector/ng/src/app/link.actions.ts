@@ -6,6 +6,7 @@ export const getLink = createAction('[Link] Get Link');
 export const fetchConfig = createAction('[Link] Fetch Config');
 export const upvote = createAction('[Link] Upvote');
 export const downvote = createAction('[Link] Downvote');
+export const deleteLink = createAction('[Link] Delete', props<{id: number}>());
 export const fetchConfigNames = createAction('[Link] Fetch Config Names');
 export const setLink = createAction('[Link] Set Link', props<{link: Link}>());
 export const setConfigNames = createAction('[Link] Set Config Names', props<{configNames: string[]}>());

@@ -22,6 +22,7 @@ export function linkReducer(linkState: State | undefined, linkAction: Action) {
     on(LinkActions.setConfigNames, (state, action) => { return { ...state, configs: action.configNames, newLink: false };}),
     on(LinkActions.setConfigLinks, (state, action) => { return { ...state, configLinks: action.configLinks, newLink: false };}),
     on(LinkActions.setLink, (state, action) => { return { ...state, currentLink: action.link, newLink: true };}),
+    on(LinkActions.deleteLink, (state, action) => {return {...state, configLinks: state.configLinks.filter(x=> x.id !== action.id) }}),
     on(LinkActions.upvote, (state) => { return { ...state, currentLink: {...state.currentLink, probability: state.currentLink.probability + 1}, newLink: false };}),
     on(LinkActions.downvote, (state) => { return { ...state, currentLink: {...state.currentLink, probability: state.currentLink.probability + -1}, newLink: false };}),
   )(linkState, linkAction);

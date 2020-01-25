@@ -1,29 +1,18 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace SongRedirector.Models
 {
-    public class Link
+    public class Link : LinkEntity
     {
-        public int Id { get; set; }
-
-        public string DisplayName { get; set; }
-
-        public string Uri { get; set; }
-
-        public int Probability { get; set; }
-
-        public Link()
+        public Link(int id, string displayName, string uri, int probability = 1) : base(id, displayName, uri, probability)
         {
+        }
 
-        }
-        public Link(int id, string displayName, string uri, int probability = 1)
-        {
-            Id = id;
-            DisplayName = displayName;
-            Uri = uri;
-            Probability = probability;
-        }
+        public Link(LinkEntity link) : base(link.Id, link.DisplayName, link.Uri, link.Probability) { }
 
         private Match youtubeLinkMatches = null;
         private Match YoutubeLinkMatches

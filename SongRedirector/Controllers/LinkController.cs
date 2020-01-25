@@ -26,13 +26,13 @@ namespace SongRedirector.Controllers
         [HttpGet]
         public Link GetRandomLink(string config)
         {
-            return linkProvider.GetLink(config);
+            return new Link(linkProvider.GetLink(config));
         }
 
         [HttpGet("{id}")]
         public Link GetLink(string config, int id)
         {
-            return linkRepository.GetLink(config, id);
+            return new Link(linkRepository.GetLink(config, id));
         }
 
         [HttpPost("{id}/upvote")]
@@ -46,6 +46,29 @@ namespace SongRedirector.Controllers
         public OkResult Downvote(string config, int id)
         {
             linkRepository.ChangeProbability(config, id, -1);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public OkResult Delete(string config, int id)
+        {
+            linkRepository.Delete(config, id);
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public OkResult Update(string config, LinkEntity link)
+        {
+            linkRepository.Save(config, link);
+            return Ok();
+        }
+
+        [HttpPost]
+        public OkResult Create(string config, LinkEntity link)
+        {
+            var newLink = link;
+            newLink.Id = 0;
+            linkRepository.Save(config, newLink);
             return Ok();
         }
 
