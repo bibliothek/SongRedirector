@@ -12,7 +12,8 @@ import {
   setConfigLinks,
   getLink,
   deleteLink,
-  saveLink
+  saveLink,
+  addLink
 } from "./link.actions";
 import {
   switchMap,
@@ -188,6 +189,26 @@ export class LinkEffects {
       ),
       switchMap(([action, config]) => {
         return this.httpClient.put(`${this.endpoint}/${config}/link/${action.link.id}`, action.link);
+      }
+      )
+  ), {dispatch: false});
+
+  addLink$ = createEffect(() =>
+  this.actions$.pipe(
+      ofType(addLink),
+      concatMap(action => {
+        return of(action).pipe(withLatestFrom(this.store.select(
+          "router",
+          "state",
+          "root",
+          "firstChild",
+          "params",
+          "config"
+        )))
+      }
+      ),
+      switchMap(([action, config]) => {
+        return this.httpClient.post(`${this.endpoint}/${config}/link`, action.link);
       }
       )
   ), {dispatch: false});

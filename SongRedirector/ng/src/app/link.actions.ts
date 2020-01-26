@@ -10,5 +10,6 @@ export const deleteLink = createAction('[Link] Delete', props<{id: number}>());
 export const fetchConfigNames = createAction('[Link] Fetch Config Names');
 export const setLink = createAction('[Link] Set Link', props<{link: Link}>());
 export const saveLink = createAction('[Link] Save Link', props<{link: Link}>());
+export const addLink = createAction('[Link] Add Link', props<{link: Link}>());
 export const setConfigNames = createAction('[Link] Set Config Names', props<{configNames: string[]}>());
 export const setConfigLinks = createAction('[Link] Set Config Links', props<{configLinks: Link[]}>());

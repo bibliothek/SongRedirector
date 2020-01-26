@@ -10,8 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: "app-link-edit",
-  templateUrl: "./link-edit.component.html",
-  styleUrls: ["./link-edit.component.scss"]
+  templateUrl: "./link-edit.component.html"
 })
 export class LinkEditComponent implements OnInit {
 
@@ -21,40 +20,24 @@ export class LinkEditComponent implements OnInit {
     uri: "",
     youTubeEmbedCode: "",
     youTubeStartTime: "",
-    probability: 0
+    probability: 10
   };
 
-  linkForm: FormGroup;
-
   constructor(private store: Store<State>, private route: ActivatedRoute, private router: Router) {
-    this.initForm();    
-  }
-  
-  initForm() {
-    this.linkForm = new FormGroup({
-      name: new FormControl(this.link.displayName, Validators.required),
-      uri: new FormControl(this.link.uri, [Validators.required, Validators.pattern('https?://.+')])
-    });
   }
 
   ngOnInit() {
     this.store.select("link").subscribe(linkState => {
       if (linkState.currentLink) {
         this.link = linkState.currentLink;
-        this.initForm();
       }
     });
-    this.route.params.subscribe(params => this.store.dispatch(getLink()));
+    this.route.params.subscribe(() => this.store.dispatch(getLink()));
   }
 
-  onSubmit() {
-    console.log(this.linkForm.value);
-    const link = {...this.link, displayName: this.linkForm.value.name, uri: this.linkForm.value.uri};
+  onSave(link) {
     this.store.dispatch(saveLink({link}));
     this.router.navigate(['..'], {relativeTo: this.route});
   }
 
-  onDiscard() {
-    this.router.navigate(['..'], {relativeTo: this.route});
-  }
 }

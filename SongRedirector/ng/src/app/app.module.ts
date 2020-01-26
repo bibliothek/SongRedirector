@@ -24,6 +24,8 @@ import { environment } from '../environments/environment';
 import { RedirectComponent } from './redirect/redirect.component';
 import { LinkEditComponent } from './edit/link-edit/link-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LinkFormComponent } from './edit/link-form/link-form.component';
+import { NewLinkComponent } from './edit/new-link/new-link.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LinkListComponent,
     RedirectComponent,
     LinkEditComponent,
+    LinkFormComponent,
+    NewLinkComponent,
   ],
   imports: [
     BrowserModule,
