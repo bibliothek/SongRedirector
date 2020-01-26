@@ -13,8 +13,8 @@ jobs:
     - name: Login to Docker Hub
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       env:
-        DOCKER_USERNAME: ${{{secrets.DOCKERHUB_USERNAME}}
-        DOCKER_PASSWORD: ${{{secrets.DOCKERHUB_ACCESSTOKEN}}
+        DOCKER_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
+        DOCKER_PASSWORD: ${{secrets.DOCKERHUB_ACCESSTOKEN}}
     - name: Build the Docker image
       run: docker build . --file SongRedirector/Dockerfile --tag mthaller/songredirector:${{ github.sha }}
     - name: Publish image
