@@ -36,8 +36,7 @@ namespace SongRedirector
             });
 
             services.Configure<BlobStorageSettings>(options => Configuration.GetSection("BlobStorageSettings").Bind(options));
-            //services.AddSingleton<ILinkRepository, AzureBlobRepository>();
-            services.AddSingleton<ILinkRepository, EmbeddedFileRepository>();
+            services.AddSingleton<ILinkRepository, AzureBlobRepository>();
             services.AddSingleton<ILinkProvider, RandomLinkProvider>();
         }
 
