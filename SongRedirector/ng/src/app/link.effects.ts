@@ -13,7 +13,8 @@ import {
   getLink,
   deleteLink,
   saveLink,
-  addLink
+  addLink,
+  setEditLink
 } from "./link.actions";
 import {
   switchMap,
@@ -149,6 +150,24 @@ export class LinkEffects {
       }),
       map(link => {
         return setLink({ link });
+      })
+    )
+  );
+
+  getEditLink$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getLink),
+      switchMap(_ =>
+        this.store.select("router", "state", "root", "firstChild", "params")
+      ),
+      filter(params => !!params["id"]),
+      switchMap(params => {
+        return this.httpClient.get<Link>(
+          `${this.endpoint}/${params["config"]}/link/${params["id"]}`
+        );
+      }),
+      map(link => {
+        return setEditLink({ link });
       })
     )
   );

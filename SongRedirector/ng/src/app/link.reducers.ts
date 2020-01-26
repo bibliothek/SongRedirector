@@ -7,13 +7,15 @@ export interface State {
   currentLink: Link;
   configLinks: Link[];
   newLink: boolean;
+  currentEditLink: Link;
 }
 
 export const initialState: State = {
   configs: [],
   currentLink: null,
   configLinks: [],
-  newLink: false
+  newLink: false,
+  currentEditLink: null
 };
 
 export function linkReducer(linkState: State | undefined, linkAction: Action) {
@@ -22,6 +24,7 @@ export function linkReducer(linkState: State | undefined, linkAction: Action) {
     on(LinkActions.setConfigNames, (state, action) => { return { ...state, configs: action.configNames, newLink: false };}),
     on(LinkActions.setConfigLinks, (state, action) => { return { ...state, configLinks: action.configLinks, newLink: false };}),
     on(LinkActions.setLink, (state, action) => { return { ...state, currentLink: action.link, newLink: true };}),
+    on(LinkActions.setEditLink, (state, action) => { return { ...state, currentEditLink: action.link };}),
     on(LinkActions.deleteLink, (state, action) => {return {...state, configLinks: state.configLinks.filter(x=> x.id !== action.id) }}),
     on(LinkActions.saveLink, (state, action) => {return {...state, configLinks: state.configLinks.filter(x=> x.id !== action.link.id).concat([action.link]) }}),
     on(LinkActions.addLink, (state, action) => {return {...state, configLinks: state.configLinks.concat([action.link]) }}),

@@ -28,11 +28,11 @@ export class LinkEditComponent implements OnInit {
 
   ngOnInit() {
     this.store.select("link").subscribe(linkState => {
-      if (linkState.currentLink) {
-        this.link = linkState.currentLink;
+      if (linkState.currentEditLink) {
+        this.link = linkState.currentEditLink;
       }
     });
-    this.route.params.subscribe(() => this.store.dispatch(getLink()));
+    this.route.params.subscribe((params) => this.store.dispatch(getLink()));
   }
 
   onSave(link) {

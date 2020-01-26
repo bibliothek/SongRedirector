@@ -1,14 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Link } from 'src/app/link.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { State } from 'src/app/reducers';
+import { Store } from '@ngrx/store';
+import { setEditLink } from 'src/app/link.actions';
 
 @Component({
   selector: 'app-link-form',
   templateUrl: './link-form.component.html',
   styleUrls: ['./link-form.component.scss']
 })
-export class LinkFormComponent implements OnInit {
+export class LinkFormComponent implements OnInit, OnDestroy {
+  ngOnDestroy(): void {
+    this.store.dispatch(setEditLink({link: null}));
+  }
 
   @Input()
   isNew = false;
@@ -32,7 +38,9 @@ export class LinkFormComponent implements OnInit {
 
   linkForm: FormGroup;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  waiting = true;
+
+  constructor(private store: Store<State>, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.title = this.isNew ? 'New link' : 'Edit link';
@@ -40,6 +48,7 @@ export class LinkFormComponent implements OnInit {
   }
 
   initForm() {
+    this.waiting = this.isNew ? false : this.link.id === 0;
     this.linkForm = new FormGroup({
       name: new FormControl(this.link.displayName, Validators.required),
       uri: new FormControl(this.link.uri, [Validators.required, Validators.pattern('https?://.+')])

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatSelectModule, MatBadgeModule, MatMenuModule, MatTableModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import { MatButtonModule, MatCardModule, MatSelectModule, MatBadgeModule, MatMenuModule, MatTableModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule} from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -52,6 +52,7 @@ import { NewLinkComponent } from './edit/new-link/new-link.component';
     MatInputModule,
     ReactiveFormsModule,
     MatBadgeModule,
+    MatProgressSpinnerModule,
     MatTableModule,
     LayoutModule,
     HttpClientModule,
