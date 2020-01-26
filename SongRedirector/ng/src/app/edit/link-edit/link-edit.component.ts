@@ -1,12 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Link } from "src/app/link.model";
-import { Store, select } from "@ngrx/store";
+import { Store } from "@ngrx/store";
 import { State } from "src/app/reducers";
-import { ActivatedRoute, Params, Router } from "@angular/router";
-import { fetchConfig, getLink, saveLink } from "src/app/link.actions";
-import { switchMap, concatMap, withLatestFrom } from "rxjs/operators";
-import * as fromLinks from "../../link.reducers";
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from "@angular/router";
+import { getLink, saveLink } from "src/app/link.actions";
 
 @Component({
   selector: "app-link-edit",
@@ -32,7 +29,7 @@ export class LinkEditComponent implements OnInit {
         this.link = linkState.currentEditLink;
       }
     });
-    this.route.params.subscribe((params) => this.store.dispatch(getLink()));
+    this.route.params.subscribe(() => this.store.dispatch(getLink()));
   }
 
   onSave(link) {
