@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatSelectModule, MatBadgeModule, MatMenuModule, MatTableModule} from '@angular/material';
+import { MatButtonModule, MatCardModule, MatSelectModule, MatBadgeModule, MatMenuModule, MatTableModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -23,6 +23,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { RedirectComponent } from './redirect/redirect.component';
 import { LinkEditComponent } from './edit/link-edit/link-edit.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,9 @@ import { LinkEditComponent } from './edit/link-edit/link-edit.component';
     MatSelectModule,
     MatListModule,
     MatMenuModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
     MatBadgeModule,
     MatTableModule,
     LayoutModule,
