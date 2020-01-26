@@ -19,3 +19,14 @@ jobs:
       run: docker build . --file SongRedirector/Dockerfile --tag mthaller/songredirector:${{ github.sha }}
     - name: Publish image
       run: docker push mthaller/songredirector:${{ github.sha }}
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - uses: azure/webapps-container-deploy@v1
+      with:
+        app-name: 'standupsong2'
+        images: 'mthaller/songredirector:${{ github.sha }}'
+    - name: Azure logout
+      run: |
+        az logout
