@@ -4,7 +4,7 @@
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{link ? link.displayName : ''}}</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content **ngIf="!!this.link; else spinner">
       <iframe [width]="this.videoWidth" [height]="this.videoHeight" [src]="this.videoLink" frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </mat-card-content>
@@ -16,3 +16,7 @@
     </mat-card-actions>
   </mat-card>
 </div>
+<ng-template #spinner>
+  <mat-spinner></mat-spinner>
+</ng-template>
+
