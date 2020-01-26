@@ -189,8 +189,9 @@ export class LinkEffects {
       switchMap(([action, config]) => {
         return this.httpClient.delete(`${this.endpoint}/${config}/link/${action.id}`);
       }
-      )
-  ), {dispatch: false});
+      ),
+      map(() => fetchConfig())
+  ));
 
   saveLink$ = createEffect(() =>
   this.actions$.pipe(
@@ -209,8 +210,9 @@ export class LinkEffects {
       switchMap(([action, config]) => {
         return this.httpClient.put(`${this.endpoint}/${config}/link/${action.link.id}`, action.link);
       }
-      )
-  ), {dispatch: false});
+      ),
+      map(() => fetchConfig())
+  ));
 
   addLink$ = createEffect(() =>
   this.actions$.pipe(
@@ -229,8 +231,9 @@ export class LinkEffects {
       switchMap(([action, config]) => {
         return this.httpClient.post(`${this.endpoint}/${config}/link`, action.link);
       }
-      )
-  ), {dispatch: false});
+      ),
+      map(() => fetchConfig())
+  ));
 
   constructor(
     private actions$: Actions,

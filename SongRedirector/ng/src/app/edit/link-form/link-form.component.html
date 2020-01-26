@@ -11,6 +11,9 @@
           <mat-form-field>
             <input formControlName="uri" matInput placeholder="Url">
           </mat-form-field>
+          <mat-form-field>
+            <input formControlName="weight" matInput placeholder="Weight" type="number">
+          </mat-form-field>
           <div class="button-panel">
             <button mat-raised-button color="primary" [disabled]="!linkForm.dirty || linkForm.invalid">Save</button>
             <button type="button" mat-raised-button (click)="onDiscard()">Discard</button>

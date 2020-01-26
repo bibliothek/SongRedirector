@@ -51,7 +51,8 @@ export class LinkFormComponent implements OnInit, OnDestroy {
     this.waiting = this.isNew ? false : this.link.id === 0;
     this.linkForm = new FormGroup({
       name: new FormControl(this.link.displayName, Validators.required),
-      uri: new FormControl(this.link.uri, [Validators.required, Validators.pattern('https?://.+')])
+      uri: new FormControl(this.link.uri, [Validators.required, Validators.pattern('https?://.+')]),
+      weight: new FormControl(this.link.probability, Validators.required)
     });
   }
   
@@ -60,7 +61,7 @@ export class LinkFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    const link = {...this.link, displayName: this.linkForm.value.name, uri: this.linkForm.value.uri};
+    const link = {...this.link, displayName: this.linkForm.value.name, uri: this.linkForm.value.uri, probability: this.linkForm.value.weight};
     this.save.emit(link);
   }
 
