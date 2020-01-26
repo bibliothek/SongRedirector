@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Login to Docker Hub
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      env:
+        DOCKER_USERNAME: ${{{secrets.DOCKERHUB_USERNAME}}
+        DOCKER_PASSWORD: ${{{secrets.DOCKERHUB_ACCESSTOKEN}}
+    - name: Build the Docker image
+      run: docker build . --file SongRedirector/Dockerfile --tag mthaller/songredirector:${{ github.sha }}
+    - name: Publish image
+      run: docker push mthaller/songredirector:${{ github.sha }}
