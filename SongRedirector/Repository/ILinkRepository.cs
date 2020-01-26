@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SongRedirector.Models;
+using System.Collections.Generic;
 
 namespace SongRedirector.Repository
 {
@@ -6,9 +7,9 @@ namespace SongRedirector.Repository
     {
         ILinkConfig GetConfig(string configName);
         IList<string> GetConfigNames();
-        Link GetLink(string configName, int id);
+        LinkEntity GetLink(string configName, int id);
         void Delete(string config, int id);
-        void Save(string configName, Link link);
+        void Save(string configName, LinkEntity link);
         void ChangeProbability(string config, int id, int delta);
 
     }

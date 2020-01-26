@@ -1,0 +1,22 @@
+<div class="container" #container>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{link ? link.displayName : ''}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="!!this.link; else spinner">
+      <iframe [width]="this.videoWidth" [height]="this.videoHeight" [src]="this.videoLink" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </mat-card-content>
+    <mat-card-actions style="display: flex;justify-content: center;align-items: center;">
+      <button mat-button [matBadge]="link ? link.probability : 0"><i class="material-icons" (click)="upvote()">thumb_up</i></button>
+      <button mat-button><i class="material-icons" (click)="downvote()">thumb_down</i></button>
+      <span style="flex: 1;"></span>
+      <button mat-raised-button color="primary" (click)="getAnotherLink()">Retry</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<ng-template #spinner>
+  <mat-spinner></mat-spinner>
+</ng-template>
+

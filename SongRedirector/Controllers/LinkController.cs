@@ -2,57 +2,75 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SongRedirector.Models;
 using SongRedirector.Repository;
+using SongRedirector.Services;
 
 namespace SongRedirector.Controllers
 {
-    public class LinkController : Controller
+    [Route("api/config/{config}/link")]
+    [ApiController]
+    public class LinkController : ControllerBase
     {
+        private readonly ILinkProvider linkProvider;
         private readonly ILinkRepository linkRepository;
 
-        public LinkController(ILinkRepository linkRepository)
+        public LinkController(ILinkProvider linkProvider, ILinkRepository linkRepository)
         {
+            this.linkProvider = linkProvider;
             this.linkRepository = linkRepository;
         }
 
         [HttpGet]
-        public IActionResult Create([FromRoute]string config)
+        public Link GetRandomLink(string config)
         {
-            return View(new LinkModel() { ConfigName = config});
+            return new Link(linkProvider.GetLink(config));
         }
 
-        [HttpGet]
-        public IActionResult Edit([FromRoute]string config, [FromRoute]int id)
+        [HttpGet("{id}")]
+        public Link GetLink(string config, int id)
         {
-            var link = linkRepository.GetLink(config, id);
-            return View(new LinkModel(config, link));
+            return new Link(linkRepository.GetLink(config, id));
         }
 
-        public IActionResult Upvote([FromRoute]string config, [FromRoute]int id)
+        [HttpPost("{id}/upvote")]
+        public OkResult Upvote(string config, int id)
         {
             linkRepository.ChangeProbability(config, id, 1);
             return Ok();
         }
 
-        public IActionResult Downvote([FromRoute]string config, [FromRoute]int id)
+        [HttpPost("{id}/downvote")]
+        public OkResult Downvote(string config, int id)
         {
             linkRepository.ChangeProbability(config, id, -1);
             return Ok();
         }
 
-        [HttpPost]
-        public IActionResult Save(LinkModel linkModel)
-        {
-            linkRepository.Save(linkModel.ConfigName, linkModel.Link);
-            return RedirectToAction("Index", "Config", new { config = linkModel.ConfigName });
-        }
-
-        public IActionResult Delete([FromRoute]string config, [FromRoute]int id)
+        [HttpDelete("{id}")]
+        public OkResult Delete(string config, int id)
         {
             linkRepository.Delete(config, id);
-            return RedirectToAction("Index", "Config",new { config});
+            return Ok();
         }
+
+        [HttpPut("{id}")]
+        public OkResult Update(string config, LinkEntity link)
+        {
+            linkRepository.Save(config, link);
+            return Ok();
+        }
+
+        [HttpPost]
+        public OkResult Create(string config, LinkEntity link)
+        {
+            var newLink = link;
+            newLink.Id = 0;
+            linkRepository.Save(config, newLink);
+            return Ok();
+        }
+
     }
 }

@@ -1,3 +1,4 @@
+using SongRedirector.Models;
 using SongRedirector.Repository;
 using System;
 namespace SongRedirector.Services
@@ -13,7 +14,7 @@ namespace SongRedirector.Services
             this.linkRepository = linkRepository;
         }
 
-        public Link GetLink(string configName)
+        public LinkEntity GetLink(string configName)
         {
             var config = linkRepository.GetConfig(configName);
             var idx = rnd.Next(config.WeightedLinks.Length);

@@ -39,7 +39,7 @@ namespace SongRedirector.Repository
 
         protected abstract void DeleteInternal(string config, int id);
 
-        public Link GetLink(string configName, int id)
+        public LinkEntity GetLink(string configName, int id)
         {
             var config = GetConfig(configName);
             return config.Links.FirstOrDefault(x => x.Id == id);
@@ -57,11 +57,11 @@ namespace SongRedirector.Repository
             using (var csv = new CsvReader(reader))
             {
                 csv.Configuration.Delimiter = ";";
-                return new LinkConfig(csv.GetRecords<Link>().ToArray(), configName);
+                return new LinkConfig(csv.GetRecords<LinkEntity>().ToArray(), configName);
             }
         }
 
-        public void Save(string configName, Link link)
+        public void Save(string configName, LinkEntity link)
         {
             var config = GetConfig(configName);
             if (link.Id == 0)
