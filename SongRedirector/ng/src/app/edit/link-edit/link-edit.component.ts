@@ -3,7 +3,7 @@ import { Link } from "src/app/link.model";
 import { Store, select } from "@ngrx/store";
 import { State } from "src/app/reducers";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { fetchConfig, getLink } from "src/app/link.actions";
+import { fetchConfig, getLink, saveLink } from "src/app/link.actions";
 import { switchMap, concatMap, withLatestFrom } from "rxjs/operators";
 import * as fromLinks from "../../link.reducers";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -48,7 +48,10 @@ export class LinkEditComponent implements OnInit {
   }
 
   onSubmit() {
-
+    console.log(this.linkForm.value);
+    const link = {...this.link, displayName: this.linkForm.value.name, uri: this.linkForm.value.uri};
+    this.store.dispatch(saveLink({link}));
+    this.router.navigate(['..'], {relativeTo: this.route});
   }
 
   onDiscard() {

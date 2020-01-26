@@ -14,7 +14,7 @@ export class LinkListComponent implements OnInit {
 
   links: Link[] = [];
 
-  displayedColumns: string[] = ['displayName', 'uri', 'probability', 'actions'];
+  displayedColumns: string[] = ['displayName', 'uri', 'probability', 'edit', 'delete'];
 
   constructor(private store: Store<State>, private route: ActivatedRoute, private router: Router) { }
 
