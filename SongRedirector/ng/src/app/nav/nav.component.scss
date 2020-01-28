@@ -45,6 +45,12 @@ h1.example-app-name {
   height: 100%;
 }
 
-span, a {
-  margin-right: 15px;
+.contribute {
+  font-size: small;
+  text-align: right;
+  padding-bottom: 8px;
+}
+
+.mat-sidenav {
+  padding: 0 16px;
 }
