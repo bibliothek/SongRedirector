@@ -23,6 +23,7 @@ export function linkReducer(linkState: State | undefined, linkAction: Action) {
     initialState,
     on(LinkActions.setConfigNames, (state, action) => { return { ...state, configs: action.configNames, newLink: false };}),
     on(LinkActions.setConfigLinks, (state, action) => { return { ...state, configLinks: action.configLinks, newLink: false };}),
+    on(LinkActions.fetchLink, (state, action) => { return { ...state, currentLink: null, newLink: false };}),
     on(LinkActions.setLink, (state, action) => { return { ...state, currentLink: action.link, newLink: true };}),
     on(LinkActions.setEditLink, (state, action) => { return { ...state, currentEditLink: action.link };}),
     on(LinkActions.deleteLink, (state, action) => {return {...state, configLinks: state.configLinks.filter(x=> x.id !== action.id) }}),

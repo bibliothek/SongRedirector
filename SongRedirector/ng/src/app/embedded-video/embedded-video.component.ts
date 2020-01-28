@@ -10,7 +10,7 @@ import { Link } from "../link.model";
 import { State } from "../reducers";
 import { Store, select } from "@ngrx/store";
 import { fetchLink, downvote, upvote } from "../link.actions";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-embedded-video",
@@ -36,12 +36,14 @@ export class EmbeddedVideoComponent implements OnInit {
     this.store.pipe(select("link")).subscribe(link => {
       if (link) {
         this.link = link.currentLink;
-        if(link.newLink){
+        if (link.newLink) {
           this.setVideoLink(link.currentLink);
         }
       }
     });
-    this.route.params.subscribe(() =>this.store.dispatch(fetchLink()));
+    this.route.params.subscribe(() => {
+      this.store.dispatch(fetchLink());
+    });
   }
 
   @HostListener("window:resize")
