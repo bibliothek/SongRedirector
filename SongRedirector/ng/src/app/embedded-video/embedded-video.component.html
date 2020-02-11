@@ -9,8 +9,8 @@
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </mat-card-content>
     <mat-card-actions style="display: flex;justify-content: center;align-items: center;">
-      <button mat-button (click)="upvote() [matBadge]="link ? link.probability : 0"><i class="material-icons"">thumb_up</i></button>
-      <button mat-button (click)="downvote()><i class="material-icons"">thumb_down</i></button>
+      <button mat-button (click)="upvote()" [matBadge]="link ? link.probability : 0"><i class="material-icons">thumb_up</i></button>
+      <button mat-button (click)="downvote()"><i class="material-icons">thumb_down</i></button>
       <span style="flex: 1;"></span>
       <button mat-raised-button color="primary" (click)="getAnotherLink()">Retry</button>
     </mat-card-actions>
