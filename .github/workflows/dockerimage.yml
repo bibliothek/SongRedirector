@@ -1,6 +1,10 @@
-name: Docker Image CI
+name: Build image and publish
 
-on: [push]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
 
@@ -11,6 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Login to Docker Hub
+      if: github.ref == 'refs/heads/master'
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       env:
         DOCKER_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
@@ -18,15 +23,19 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file SongRedirector/Dockerfile --tag mthaller/songredirector:${{ github.sha }}
     - name: Publish image
+      if: github.ref == 'refs/heads/master'
       run: docker push mthaller/songredirector:${{ github.sha }}
     - name: 'Login via Azure CLI'
+      if: github.ref == 'refs/heads/master'
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - uses: azure/webapps-container-deploy@v1
+      if: github.ref == 'refs/heads/master'
       with:
         app-name: 'standupsong'
         images: 'mthaller/songredirector:${{ github.sha }}'
     - name: Azure logout
+      if: github.ref == 'refs/heads/master'
       run: |
         az logout
