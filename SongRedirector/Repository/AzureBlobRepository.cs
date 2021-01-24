@@ -76,6 +76,7 @@ namespace SongRedirector.Repository
         public override IList<string> GetConfigNames()
         {
             if (configNames != null) return configNames;
+            container.CreateIfNotExistsAsync().Wait();
             var segment = container.ListBlobsSegmentedAsync(null).Result;
             var list = new List<IListBlobItem>();
             list.AddRange(segment.Results);
